@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Login, Signin } from './routes'
+import { Login, Signin, Dash } from './routes'
 
 interface IAppProps {
 
@@ -10,7 +10,8 @@ const App: FunctionComponent<IAppProps> = (props) => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<Login />} />
+                <Route path="/" element={<Dash />} />
+                <Route path='login' element={<Login />} />
                 <Route path='signin' element={<Signin />} />
             </Routes>
         </BrowserRouter>
