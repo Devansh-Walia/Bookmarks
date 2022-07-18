@@ -1,5 +1,5 @@
-import {Form} from 'formik'
-import {styled} from '@mui/material'
+import { styled } from '@mui/material'
+import { Form } from 'formik'
 
 export const Form2 = styled(Form)({
     display: 'flex',

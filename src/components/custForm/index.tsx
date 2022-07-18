@@ -1,10 +1,10 @@
-import { Formik, Field } from "formik";
+import { Checkbox } from '@mui/material';
+import { Field, Formik } from "formik";
 import { FunctionComponent } from "react";
-import { Checkbox } from '@mui/material'
-import { inputField } from "../inputField";
 import { Link } from "react-router-dom";
-import { GoogleIcon, SigninWithGoogle, StyledButton, FlexDiv, Form2 } from "../../styles";
-import { object, string, boolean } from "yup";
+import { boolean, object, string } from "yup";
+import { FlexDiv, Form2, GoogleIcon, SigninWithGoogle, StyledButton } from "../../styles";
+import { inputField } from "../inputField";
 
 const RegisterValidation = object().shape({
     name: string().required("Required"),
@@ -59,7 +59,7 @@ export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
                         component={inputField} />
                     <FlexDiv>
                         <Field name="checked" type="checkbox" required={true} component={Checkbox} />
-                        By signing in, you agree to the <Link to="#" >Terms of service and Provacy policy</Link>
+                        By signing in, you agree to the <Link to="#" >Terms of service and Privacy policy</Link>
                     </FlexDiv>
                     <StyledButton variant="contained" type="submit">submit</StyledButton>
                     Or

@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Login, Signin, Dash } from './routes'
+import { Dash, Login, Signin } from './routes'
 
 interface IAppProps {
 
