@@ -1,11 +1,17 @@
-import {FunctionComponent} from "react";
+import { FunctionComponent } from "react";
 import { FieldProps } from "formik";
-import { TextField, TextFieldProps } from "@mui/material";
-
+import { TextFieldProps } from "@mui/material";
+import { InputFieldRounded, ErrorMessageCust } from "../../styles";
 
 export const inputField: FunctionComponent<FieldProps & TextFieldProps> = ({
   placeholder,
   field
 }) => {
-  return <TextField placeholder={placeholder} {...field} />;
+  return <>
+    <InputFieldRounded placeholder={placeholder} {...field} />
+    <ErrorMessageCust
+      name={field.name}
+      component="div"
+    />
+  </>;
 };
