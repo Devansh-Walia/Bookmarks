@@ -12,3 +12,14 @@ export const ErrorMessageCust = styled(ErrorMessage)({
     color: 'red',
     fontSize: 10
 })
+
+
+interface StyledSearchProps {
+    width: string;
+    bgcolor: string;
+}
+export const StyledTextField = styled(TextField)<StyledSearchProps>((props) => ({
+    width: props.width,
+    backgroundColor: props.bgcolor,
+    margin: 10,
+}))

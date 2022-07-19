@@ -15,3 +15,14 @@ export const  SigninWithGoogle = styled(Button)({
     borderWidth: 1,
     borderColor: '#eee'
 })
+
+export const StyledButton2 = styled(Button)({
+    color: 'grey',
+    width: 'inherit',
+})
+export const StyledButtonGiant = styled(Button)(({ theme }) => ({
+    color: theme.palette.primary.main,
+    width: '90%',
+    height: 100,
+
+}))

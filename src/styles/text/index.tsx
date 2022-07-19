@@ -17,3 +17,12 @@ export const HeaddingBold = styled(Typography)({
     color: '#FFFFFF',
     display: 'block'
 })
+
+export const LogoTitle = styled(Typography)({
+    fonFamily: 'Inter',
+    fontSize: '23px',
+    fontWeight: 700,
+    lineHeight: '27px',
+    letterSpacing: '0em',
+    textAlign: 'left',
+})

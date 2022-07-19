@@ -32,3 +32,11 @@ export const FlexDiv = styled('div')({
     margin: 5,
     padding: 10
 })
+
+export const DashContainer = styled(Box)({
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: 'white',
+})
+
