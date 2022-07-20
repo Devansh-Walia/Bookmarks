@@ -1,18 +1,24 @@
 import { Checkbox } from '@mui/material';
 import { Field, Formik } from "formik";
-import { FunctionComponent } from "react";
-import { Link } from "react-router-dom";
-import { boolean, object, string } from "yup";
-import { FlexDiv, Form2, GoogleIcon, SigninWithGoogle, StyledButton } from "../../styles";
+import { FunctionComponent, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { object, string } from "yup";
+import { ErrorDiv, FlexDiv, Form2, GoogleIcon, SigninWithGoogle, StyledButton } from "../../styles";
 import { inputField } from "../inputField";
 
 const RegisterValidation = object().shape({
-    name: string().required("Required"),
+    Name: string().required("Required"),
+    email: string()
+        .required("Valid email required")
+        .email("Valid email required"),
+    password: string().min(8, "min length of 8 is required").required("Required"),
+});
+
+const LoginValidation = object().shape({
     email: string()
         .required("Valid email required")
         .email("Valid email required"),
     password: string().min(8, "Required").required("Required"),
-    checked: boolean().oneOf([true]).required()
 });
 
 interface Values {
@@ -23,16 +29,28 @@ interface Values {
 }
 
 interface Props {
-    onSubmit: (values: Values) => void;
+    onSubmit: (values: Values) => Promise<boolean>;
 }
 
 
 export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
+    const [error, seterror] = useState(false);
+    const navigate = useNavigate();
+    if (error) {
+        setTimeout(() => { seterror(false) }, 2000);
+    }
     return (
         <Formik
             initialValues={{ Name: "", email: "", password: "", checked: false }}
             onSubmit={values => {
-                onSubmit(values);
+                onSubmit(values).then(
+                    (res: boolean) => {
+                        if (res)
+                            navigate('/');
+                        else
+                            seterror(true);
+                    }
+                );
             }}
             validationSchema={RegisterValidation}
         >
@@ -61,11 +79,12 @@ export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
                         <Field name="checked" type="checkbox" required={true} component={Checkbox} />
                         By signing in, you agree to the <Link to="#" >Terms of service and Privacy policy</Link>
                     </FlexDiv>
-                    <StyledButton variant="contained" type="submit">submit</StyledButton>
+                    {error && <ErrorDiv>user Already Exists, please try another email id</ErrorDiv>}
+                    <StyledButton variant="contained" type="submit">Submit</StyledButton>
                     Or
                     <SigninWithGoogle variant="outlined" > <GoogleIcon src={require('../../assets/icons/google.png')} />  Sign Up With Google</SigninWithGoogle>
                     <FlexDiv>
-                        Already have an account? <Link to="/" >Login</Link>
+                        Already have an account? <Link to="/login" >Login</Link>
                     </FlexDiv>
                 </Form2>
             )}
@@ -80,18 +99,29 @@ interface Values2 {
 }
 
 interface Props2 {
-    onSubmit: (values: Values2) => void;
+    onSubmit: (values: Values2) => Promise<boolean>;
 }
 
 
 export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
+    const [error, seterror] = useState(false);
+    const navigate = useNavigate();
+    if (error) {
+        setTimeout(() => { seterror(false) }, 2000);
+    }
     return (
         <Formik
             initialValues={{ email: "", password: "" }}
             onSubmit={values => {
-                onSubmit(values);
+                console.log(values, "submitted");
+                onSubmit(values).then((res: boolean) => {
+                    if (res)
+                        navigate('/');
+                    else
+                        seterror(true);
+                });
             }}
-            validationSchema={RegisterValidation}
+            validationSchema={LoginValidation}
         >
             {({ values }) => (
                 <Form2>
@@ -108,8 +138,9 @@ export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
                         type="password"
                         required={true}
                         component={inputField} />
-                    <StyledButton variant="contained" type="submit">Log in</StyledButton>
 
+                    <StyledButton variant="contained" type="submit">Log in</StyledButton>
+                    {error && <ErrorDiv>user Already Exists, please try another email id</ErrorDiv>}
                     <FlexDiv>
                         Don't have an account? <Link to="/signin" >Signin</Link>
                     </FlexDiv>

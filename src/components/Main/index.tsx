@@ -11,7 +11,7 @@ export const MainContainer = styled(Box)({
 export const Main: FunctionComponent<MainProps> = (props) => {
     return (
         <MainContainer>
-            helle
+            hello
         </MainContainer>
     )
 }

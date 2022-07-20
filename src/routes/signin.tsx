@@ -1,9 +1,23 @@
 import { FunctionComponent } from 'react'
 import { CustForm } from '../components'
 import AuthContainer from '../containers/AuthContainer'
+import { signInRequest } from '../services'
 import { WelcomeMessage, Headding, HeaddingBold, CustomBoxWhiteSmall, CustomBox, Saly } from '../styles'
 
 type Props = {}
+
+interface onSubmitValues {
+    Name: string;
+    email: string;
+    password: string;
+}
+interface onSubmitProps {
+    onSubmit: (values: onSubmitValues) => Promise<boolean>;
+}
+
+const onSubmit: onSubmitProps['onSubmit'] = ({ Name, email, password }) => {
+    return signInRequest({ Name, email, password });
+}
 
 const Signin: FunctionComponent<Props> = (props) => {
     return (
@@ -16,9 +30,7 @@ const Signin: FunctionComponent<Props> = (props) => {
                 <Saly src={require('../assets/images/Saly.png')} alt="saly" />
             </CustomBox>
             <CustomBoxWhiteSmall>
-                <CustForm onSubmit={({ Name, email, password }) => {
-                    console.log("submit");
-                }} />
+                <CustForm onSubmit={onSubmit} />
             </CustomBoxWhiteSmall>
         </AuthContainer>
     )
