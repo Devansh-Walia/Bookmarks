@@ -37,14 +37,12 @@ export const Main: FunctionComponent<MainProps> = (props) => {
     return (
         <MainContainer>
             <CustomBoxBlueSmall>
-
             </CustomBoxBlueSmall>
             <Cards>
                 <CardContainer>
                     <CardImage src={require('../../assets/images/TitleCard.png')} alt="titleCard" />
                     <FlexDiv>
                         Title Lorem
-
                     </FlexDiv>
                 </CardContainer>
             </Cards>

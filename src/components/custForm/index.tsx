@@ -20,17 +20,23 @@ const LoginValidation = object().shape({
         .email("Valid email required"),
     password: string().min(8, "Required").required("Required"),
 });
-
 interface Values {
     Name: string;
     email: string;
     password: string;
     checked: boolean;
 }
-
 interface Props {
     onSubmit: (values: Values) => Promise<boolean>;
 }
+interface Values2 {
+    email: string;
+    password: string;
+}
+interface Props2 {
+    onSubmit: (values: Values2) => Promise<boolean>;
+}
+
 
 
 export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
@@ -46,7 +52,7 @@ export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
                 onSubmit(values).then(
                     (res: boolean) => {
                         if (res)
-                            navigate('/');
+                            navigate('/login', { replace: true });
                         else
                             seterror(true);
                     }
@@ -93,14 +99,6 @@ export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
 };
 
 
-interface Values2 {
-    email: string;
-    password: string;
-}
-
-interface Props2 {
-    onSubmit: (values: Values2) => Promise<boolean>;
-}
 
 
 export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
