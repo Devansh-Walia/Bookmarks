@@ -82,6 +82,7 @@ export const logInRequest = async ({ email, password }: logInRequestProps) => {
         data: data
     };
     const final_config = setHeaders(temp_config);
+    console.dir(final_config);
     return axios(final_config)
         .then(function (response: logInRequestResponseProps) {
             console.log(response);

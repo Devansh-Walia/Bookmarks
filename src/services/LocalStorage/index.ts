@@ -13,7 +13,7 @@ export const addDataToLocalStorage = ({ key, value }: addDataProps) => {
 }
 
 export const getDataFromLocalStorage = ({ key }: getDataProps) => {
-    localStorage.getItem(key);
+    return localStorage.getItem(key);
 }
 
 export const removeDataFromLocalStorage = ({ key }: removeDataProps) => {

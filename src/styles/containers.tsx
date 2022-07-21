@@ -1,11 +1,21 @@
 import { Box, styled } from "@mui/material";
 
 export const CustomBoxBlue = styled(Box)(({ theme }) => ({
-    height: "100vh",
-    width: "100vw",
+    height: "100%",
+    width: "100%",
     backgroundColor: theme.palette.primary.main,
     display: 'flex',
+    flex: 1,
     flexDriection: 'row'
+}));
+export const CustomBoxBlueSmall = styled(Box)(({ theme }) => ({
+    height: "200px",
+    width: "100%",
+    backgroundColor: theme.palette.primary.main,
+    display: 'flex',
+    flex: 1,
+    flexDriection: 'column',
+    borderRadius: 10
 }));
 export const CustomBoxWhite = styled(Box)(({ theme }) => ({
     height: "100vh",
