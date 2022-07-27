@@ -9,7 +9,6 @@ export const CustomBoxBlue = styled(Box)(({ theme }) => ({
     flexDriection: 'row'
 }));
 export const CustomBoxBlueSmall = styled(Box)(({ theme }) => ({
-    height: "200px",
     width: "100%",
     backgroundColor: theme.palette.primary.main,
     display: 'flex',
@@ -41,6 +40,15 @@ export const FlexDiv = styled('div')({
     flexDirection: 'row',
     margin: 5,
     padding: 10
+})
+
+export const FlexDiv2 = styled('div')({
+    flex: 1,
+    flexDirection: 'row',
+    margin: 5,
+    padding: 10,
+    display: 'flex',
+    gap: 50,
 })
 
 export const DashContainer = styled(Box)({

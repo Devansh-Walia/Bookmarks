@@ -7,6 +7,18 @@ export const InputFieldRounded = styled(TextField)({
     margin: 5,
     width: '30vw'
 })
+export const InputFieldWhite = styled(TextField)(({ theme }) => ({
+    borderRadius: '10px',
+    margin: 5,
+    backgroundColor: theme.palette.primary.dark,
+    width: 'inherit',
+    color: 'white',
+    border: 'none',
+    padding: 10,
+    '&:input': {
+        color: 'white'
+    }
+}))
 
 export const ErrorMessageCust = styled(ErrorMessage)({
     color: 'red',

@@ -5,6 +5,8 @@ declare module '@mui/material/styles' {
         palette: {
             primary: {
                 main: string;
+                dark: string;
+                light: string;
             };
         };
     }
@@ -16,6 +18,8 @@ declare module '@mui/material/styles' {
 
 export const theme = createTheme({
     palette: {
-        primary: { main: '#5352ED' }
+        primary: {
+            main: '#5352ED', dark: '#6C6BF9', light: '#E4E3FF'
+        }
     }
 });

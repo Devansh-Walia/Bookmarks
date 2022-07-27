@@ -11,3 +11,12 @@ export const Form2 = styled(Form)({
     alignItems: 'center',
     height: 'fit-content'
 })
+
+export const BookMarkFormStyled = styled(Form)({
+    display: 'flex',
+    flexDirection: 'column',
+    height: 'fit-content',
+    flex: 1,
+    marginLeft: 40,
+    padding: 10
+})

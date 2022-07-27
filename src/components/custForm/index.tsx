@@ -1,10 +1,11 @@
-import { Checkbox } from '@mui/material';
+import { Checkbox, Typography } from '@mui/material';
 import { Field, Formik } from "formik";
 import { FunctionComponent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { object, string } from "yup";
-import { ErrorDiv, FlexDiv, Form2, GoogleIcon, SigninWithGoogle, StyledButton } from "../../styles";
-import { inputField } from "../inputField";
+import { BookMarkFormStyled, ErrorDiv, FlexDiv, FlexDiv2, Form2, FormButton, GoogleIcon, SigninWithGoogle, StyledButton } from "../../styles";
+import { RootModal } from '../FolderModal';
+import { inputField, inputFieldAddForm } from "../inputField";
 
 const RegisterValidation = object().shape({
     Name: string().required("Required"),
@@ -19,6 +20,10 @@ const LoginValidation = object().shape({
         .required("Valid email required")
         .email("Valid email required"),
     password: string().min(8, "Required").required("Required"),
+});
+const BookmarkValidation = object().shape({
+    url: string()
+        .required("Valid email required")
 });
 interface Values {
     Name: string;
@@ -35,6 +40,15 @@ interface Values2 {
 }
 interface Props2 {
     onSubmit: (values: Values2) => Promise<boolean>;
+}
+interface BookmarkValues {
+    url: string;
+    folder: object;
+}
+
+interface BookmarkProps {
+    // onSubmit: (values: BookmarkValues) => Promise<boolean>;
+    onSubmit: (values: BookmarkValues) => void;
 }
 
 
@@ -145,5 +159,52 @@ export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
                 </Form2>
             )}
         </Formik>
+    );
+};
+
+
+
+export const BookmarkForm: FunctionComponent<BookmarkProps> = ({ onSubmit }) => {
+    const [error, seterror] = useState(false);
+    // const navigate = useNavigate();
+    if (error) {
+        setTimeout(() => { seterror(false) }, 2000);
+    }
+    return (
+        <Formik
+            initialValues={{ url: "", folder: { path: 'root' } }}
+            onSubmit={values => {
+                console.log(values, "submitted");
+                onSubmit(values)
+                // onSubmit(values).then((res: boolean) => {
+                //     if (res)
+                //         navigate('/');
+                //     else
+                //         seterror(true);
+                // });
+            }}
+            validationSchema={BookmarkValidation}
+        >
+            {({ values }) => (
+                <BookMarkFormStyled>
+                    <Typography sx={{ color: 'white' }} variant='h4' >Add Quick Link</Typography>
+                    <Typography sx={{ color: 'white', fontSize: 10 }} >URL</Typography>
+                    <Field
+                        name="url"
+                        placeholder="URL"
+                        type="text"
+                        required={true}
+                        component={inputFieldAddForm}
+                    />
+                    <Typography sx={{ color: 'white', fontSize: 10 }} >Folder</Typography>
+                    <FlexDiv2>
+                        <RootModal />
+                        <FormButton variant="contained" type="submit">Add</FormButton>
+                    </FlexDiv2>
+                    {error && <ErrorDiv>user Already Exists, please try another email id</ErrorDiv>}
+                </BookMarkFormStyled>
+            )
+            }
+        </Formik >
     );
 };

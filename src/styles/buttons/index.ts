@@ -1,10 +1,10 @@
-import { Button,styled  } from "@mui/material";
+import { Button, styled } from "@mui/material";
 
 
-export const  StyledButton = styled(Button)({
+export const StyledButton = styled(Button)({
     width: '30vw'
 })
-export const  SigninWithGoogle = styled(Button)({
+export const SigninWithGoogle = styled(Button)({
     backgroundColor: 'white',
     width: '30vw',
     color: "black",
@@ -25,4 +25,16 @@ export const StyledButtonGiant = styled(Button)(({ theme }) => ({
     width: '90%',
     height: 100,
 
+}))
+export const FormButton = styled(Button)(({ theme }) => ({
+    color: theme.palette.primary.main,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    width: 100
+}))
+export const ModalButton = styled(Button)(({ theme }) => ({
+    backgroundColor: theme.palette.primary.dark,
+    borderRadius: 10,
+    padding: 12,
+    flex: 1
 }))
