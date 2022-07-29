@@ -149,7 +149,7 @@ export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
                         component={inputField} />
 
                     <StyledButton variant="contained" type="submit">Log in</StyledButton>
-                    {error && <ErrorDiv>user Already Exists, please try another email id</ErrorDiv>}
+                    {error && <ErrorDiv>either the email or the password is wrong</ErrorDiv>}
                     <FlexDiv>
                         Don't have an account? <Link to="/signin" >Signin</Link>
                     </FlexDiv>
