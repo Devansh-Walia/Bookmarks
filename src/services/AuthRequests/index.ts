@@ -70,7 +70,7 @@ interface logInRequestResponseProps {
     }
 }
 
-export const logInRequest = async ({ email, password }: logInRequestProps) => {
+export const logInRequest = async ({ email, password }: logInRequestProps): Promise<logInRequestResponseProps> => {
     const data = JSON.stringify({
         "email": email,
         "password": password
@@ -82,15 +82,7 @@ export const logInRequest = async ({ email, password }: logInRequestProps) => {
     };
     const final_config = setHeaders(temp_config);
     console.dir(final_config, "final config");
-    return axios(final_config)
-        .then(function (response: logInRequestResponseProps) {
-            console.log(response);
-            addDataToLocalStorage({ key: "@authToken", value: response.data.token });
-            return true;
-        })
-        .catch(function (error: RequestErrorProps) {
-            console.log(error);
-        });
+    return await axios(final_config)
 }
 
 export const logoutRequest = async () => {

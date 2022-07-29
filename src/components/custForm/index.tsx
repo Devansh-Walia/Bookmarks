@@ -14,17 +14,6 @@ const RegisterValidation = object().shape({
         .email("Valid email required"),
     password: string().min(8, "min length of 8 is required").required("Required"),
 });
-
-const LoginValidation = object().shape({
-    email: string()
-        .required("Valid email required")
-        .email("Valid email required"),
-    password: string().min(8, "Required").required("Required"),
-});
-const BookmarkValidation = object().shape({
-    url: string()
-        .required("Valid email required")
-});
 interface Values {
     Name: string;
     email: string;
@@ -34,18 +23,32 @@ interface Values {
 interface Props {
     onSubmit: (values: Values) => Promise<boolean>;
 }
+
+//login
+const LoginValidation = object().shape({
+    email: string()
+        .required("Valid email required")
+        .email("Valid email required"),
+    password: string().min(8, "Required").required("Required"),
+});
+
 interface Values2 {
     email: string;
     password: string;
 }
 interface Props2 {
-    onSubmit: (values: Values2) => Promise<boolean>;
+    onSubmit: (values: Values2) => void;
 }
+
+//bookmark
+const BookmarkValidation = object().shape({
+    url: string()
+        .required("Valid email required")
+});
 interface BookmarkValues {
     url: string;
     folder: object;
 }
-
 interface BookmarkProps {
     // onSubmit: (values: BookmarkValues) => Promise<boolean>;
     onSubmit: (values: BookmarkValues) => void;
@@ -117,7 +120,6 @@ export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
 
 export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
     const [error, seterror] = useState(false);
-    const navigate = useNavigate();
     if (error) {
         setTimeout(() => { seterror(false) }, 2000);
     }
@@ -126,12 +128,7 @@ export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
             initialValues={{ email: "", password: "" }}
             onSubmit={values => {
                 console.log(values, "submitted");
-                onSubmit(values).then((res: boolean) => {
-                    if (res)
-                        navigate('/');
-                    else
-                        seterror(true);
-                });
+                onSubmit(values);
             }}
             validationSchema={LoginValidation}
         >

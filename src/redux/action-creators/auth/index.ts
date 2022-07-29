@@ -2,24 +2,24 @@ import { Dispatch } from 'redux';
 import { authConstants } from '../../../constants';
 import { authActions } from '../../actions';
 
-export const login = (userName: string, password: string) => {
+export const login = (email: string, password: string) => {
     return (dispatch: Dispatch<authActions>) => dispatch({
-        type: authConstants.LOGIN_REDUX,
-        payload: {userName, password}
+        type: authConstants.LOGIN,
+        payload: { email, password }
     })
 }
 export const logout = () => {
-    return (dispatch: Dispatch<authActions>) => dispatch({type: authConstants.LOGOUT_REDUX})
+    return (dispatch: Dispatch<authActions>) => dispatch({ type: authConstants.LOGOUT })
 }
 export const signin = (userName: string, email: string, password: string) => {
     return (dispatch: Dispatch<authActions>) => dispatch({
-        type: authConstants.SIGNIN_REDUX,
-        payload: {userName, password, email}
+        type: authConstants.SIGNIN,
+        payload: { userName, password, email }
     })
 }
 export const getme = (userName: string) => {
     return (dispatch: Dispatch<authActions>) => dispatch({
-        type: authConstants.GETME_REDUX,
-        payload: {userName}
+        type: authConstants.GETME,
+        payload: { userName }
     })
 }

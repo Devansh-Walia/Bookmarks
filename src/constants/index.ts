@@ -1,12 +1,18 @@
 export enum authConstants {
-    LOGIN_REDUX = "login_redux",
-    LOGOUT_REDUX = "logout_redux",
-    SIGNIN_REDUX = "signin_redux",
-    GETME_REDUX = "getme_redux"
+    LOGIN = "login",
+    LOGOUT = "logout",
+    SIGNIN = "signin",
+    GETME = "getme"
 }
-export enum authSagaConstants {
-    LOGIN_SAGA = "login_saga",
-    LOGOUT_SAGA = "logout_saga",
-    SIGNIN_SAGA = "signin_saga",
-    GETME_SAGA = "getme_saga"
+export enum authSucessConstants {
+    LOGIN = "login_success",
+    LOGOUT = "logout_success",
+    SIGNIN = "signin_success",
+    GETME = "getme_success"
+}
+export enum authFaliureConstants {
+    LOGIN = "login_faliure",
+    LOGOUT = "logout_faliure",
+    SIGNIN = "signin_faliure",
+    GETME = "getme_faliure"
 }

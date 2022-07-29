@@ -1,19 +1,24 @@
-import { authSagaConstants } from '../../../constants';
+import { authConstants } from '../../../constants';
 
-import { takeLatest } from 'redux-saga/effects'
+import { all, takeLatest, fork } from 'redux-saga/effects'
 import { getmeWatcherFunction, LoginWatcherFunction, logoutWatcherFunction, signinWatcherFunction } from '../functions';
 
-export function* LoginWatcher() {
-    yield takeLatest(authSagaConstants.LOGIN_SAGA, LoginWatcherFunction)
+function* LoginWatcher() {
+    yield takeLatest(authConstants.LOGIN, LoginWatcherFunction)
 }
 
-export function* logoutWatcher() {
-    yield takeLatest(authSagaConstants.LOGOUT_SAGA, logoutWatcherFunction)
+function* logoutWatcher() {
+    yield takeLatest(authConstants.LOGOUT, logoutWatcherFunction)
 }
 
-export function* signinWatcher() {
-    yield takeLatest(authSagaConstants.SIGNIN_SAGA, signinWatcherFunction)
+function* signinWatcher() {
+    yield takeLatest(authConstants.SIGNIN, signinWatcherFunction)
 }
-export function* getmeWatcher() {
-    yield takeLatest(authSagaConstants.GETME_SAGA, getmeWatcherFunction)
-} 
+function* getmeWatcher() {
+    yield takeLatest(authConstants.GETME, getmeWatcherFunction)
+}
+
+
+export default function* authSagas() {
+    yield all([fork(logoutWatcher), fork(LoginWatcher), fork(signinWatcher), fork(getmeWatcher)]);
+}

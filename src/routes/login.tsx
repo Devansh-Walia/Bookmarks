@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import { CustForm2 } from '../components'
 import AuthContainer from '../containers/AuthContainer'
-import { logInRequest } from '../services'
+import { useLogin } from '../redux/hooks/AuthHooks'
 import { WelcomeMessage, Headding, HeaddingBold, CustomBoxWhiteSmall, CustomBox, Saly } from '../styles'
 
 type Props = {}
@@ -10,14 +10,13 @@ interface onSubmitValues {
   email: string;
   password: string;
 }
-interface onSubmitProps {
-  onSubmit: (values: onSubmitValues) => Promise<boolean>;
-}
 
-const onSubmit: onSubmitProps['onSubmit'] = ({ email, password }) => {
-  return logInRequest({ email, password });
-}
+
 const Login: FunctionComponent<Props> = (props) => {
+  const [loggingIn] = useLogin();
+  const onSubmit = ({ email, password }: onSubmitValues) => {
+    loggingIn({ email, password });
+  }
   return (
     <AuthContainer>
       <CustomBox>
