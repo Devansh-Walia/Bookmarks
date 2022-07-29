@@ -22,3 +22,4 @@ function* getmeWatcher() {
 export default function* authSagas() {
     yield all([fork(logoutWatcher), fork(LoginWatcher), fork(signinWatcher), fork(getmeWatcher)]);
 }
+

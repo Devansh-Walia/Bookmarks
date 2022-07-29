@@ -5,8 +5,8 @@ import { loginProps } from '../../actions';
 
 export function* LoginWatcherFunction({ email, password }: loginProps) {
     console.log("in login watcher",)
-    // const response = yield call(logInRequest, email, password);
-    // addDataToLocalStorage({ key: "@authToken", value: response.data.token });
+    const response = yield call(logInRequest, email, password);
+    addDataToLocalStorage({ key: "@authToken", value: response.data.token });
 
     yield put({ type: authSucessConstants.LOGIN });
 }
