@@ -1,17 +1,16 @@
 import { authActions } from "../../actions";
 import { authFaliureConstants, authSucessConstants } from '../../../constants'
-const initialState = {
-    userName: '',
-    email: '',
-}
+const initialState = {}
 const reducer = (state: object = initialState, action: authActions) => {
     switch (action.type) {
         case authSucessConstants.LOGIN:
             console.log("user redux login success")
-            return state;
+            return true;
         case authFaliureConstants.LOGIN:
             console.log("user redux login fail")
-            return state;
+            console.log("failed login");
+
+            return false;
 
         default:
             return state;
