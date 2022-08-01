@@ -1,7 +1,9 @@
 import { FunctionComponent } from 'react'
+import { Navigate } from 'react-router-dom'
 import { CustForm2 } from '../components'
 import AuthContainer from '../containers/AuthContainer'
 import { useLogin } from '../redux/hooks/AuthHooks'
+import { getDataFromLocalStorage } from '../services'
 import { WelcomeMessage, Headding, HeaddingBold, CustomBoxWhiteSmall, CustomBox, Saly } from '../styles'
 
 type Props = {}
@@ -16,6 +18,10 @@ const Login: FunctionComponent<Props> = (props) => {
   const [loggingIn] = useLogin();
   const onSubmit = ({ email, password }: onSubmitValues) => {
     loggingIn({ email, password });
+  }
+  if (getDataFromLocalStorage({ key: "@authToken" })) {
+    console.log("--------------------------------");
+    return <Navigate replace to="/" />
   }
   return (
     <AuthContainer>

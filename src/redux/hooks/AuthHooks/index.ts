@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { login } from "../../action-creators"
+import { login, logout, signin } from "../../action-creators"
 
 interface loginPayload {
     email: string,
@@ -10,4 +10,20 @@ export const useLogin = () => {
     const loggingIn = (payload: loginPayload) => login(payload.email, payload.password)(dispatch);
     return [loggingIn];
 }
+interface signinPayload {
+    userName: string,
+    email: string,
+    password: string
+}
+export const useSignin = () => {
+    const dispatch = useDispatch();
+    const signingIn = (payload: signinPayload) => signin(payload.userName, payload.email, payload.password)(dispatch);
+    return [signingIn];
+}
 
+
+export const useLogout = () => {
+    const dispatch = useDispatch();
+    const loggingOut = () => logout()(dispatch);
+    return [loggingOut];
+}

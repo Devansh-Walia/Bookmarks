@@ -1,14 +1,15 @@
 import { FunctionComponent } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { logoutRequest } from '../../services';
+import { useLogout } from '../../redux/hooks/AuthHooks';
 import { Icon, StyledButton2, StyledButtonGiant } from '../../styles'
 
 type Props = {}
 
 export const Logout: FunctionComponent<Props> = (props) => {
     const navigate = useNavigate();
+    const [loggingOut] = useLogout();
     const clickHandler = () => {
-        logoutRequest();
+        loggingOut();
         navigate('/login', { replace: true });
     }
     return (<StyledButton2 onClick={clickHandler} ><Icon alt="logout" src={require('../../assets/icons/logout.svg').default} />Logout</StyledButton2>

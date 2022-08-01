@@ -1,102 +1,27 @@
-import { Box, Button, IconButton, styled, Typography } from "@mui/material";
+import { IconButton, styled, Typography } from "@mui/material";
 import { FunctionComponent, useState } from "react";
-import { CustomBoxBlueSmall } from "../../styles";
+import { CardContainer, CardImage, Cards, CustomBoxBlueSmall, FormImage, MainContainer, MiddleBar, MiddleText, Toggle, ToggleButton } from "../../styles";
+import CustomizedCheckbox from "../checkboxes";
 import { BookmarkForm } from "../custForm";
 import { SearchBox } from "../searchBox";
 
 interface MainProps {
 
 }
-export const MainContainer = styled(Box)({
-    padding: 20,
-    flex: 3,
-})
-export const Cards = styled(Box)({
-    flex: 2,
-    padding: 20
-})
-export const CardContainer = styled(Box)({
+export const ContainerCheckbox = styled('div')({
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-
-    width: 248,
-    height: 301,
-    padding: 20,
-
-    background: '#FFFFFF',
-    boxShadow: '0px 6px 12px -6px rgba(24, 39, 75, 0.12), 0px 8px 24px -4px rgba(24, 39, 75, 0.08)',
-    borderRadius: 20,
-})
-
-export const CardImage = styled('img')({
-    width: 255,
-    height: 170,
-    filter: 'drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.06)) drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.04))',
-    borderRadius: 16,
-})
-export const MiddleText = styled('div')({
-    display: 'grid',
-    gridTemplateColumns: '90% 10%',
-    textAlign: 'left',
-    gap: '20px',
-})
-export const LowerText = styled('div')({
-    textAlign: 'left',
-    paddingRight: 80,
-    paddingLeft: 25,
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 500,
-    fontSize: 14,
-    lineHeight: 19,
-    alignItems: 'center',
-    color: '#9D9B9F',
-})
-export const MiddleBar = styled(Box)({
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'row',
     justifyContent: 'space-between',
-})
-
-
-export const Toggle = styled(Box)(({ theme }) => ({
-    width: 'fit-content',
-    height: 30,
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: theme.palette.primary.main,
-    borderRadius: "30px",
-    marginTop: 10
-}))
-interface toggleProps {
-    checked?: boolean;
-}
-export const ToggleButton = styled(Button)<toggleProps>(({ theme, checked }) => ({
-    backgroundColor: !checked ? theme.palette.primary.main : "#dbd4d4",
-    padding: '5px',
-    width: 'fit-content',
-    minWidth: checked ? '0px' : 'initial',
-    height: checked ? 37 : 'initial',
-    top: checked ? -2 : 'initial',
-    borcerRadius: checked ? '10px' : 'initial',
-    "&:hover": {
-        backgroundColor: !checked ? theme.palette.primary.main : "#dbd4d4",
-    }
-}))
-
-export const FormImage = styled('img')({
-    marginLeft: 100,
-    marginRight: 100,
-    height: '250px'
+    width: 'inherit',
+    position: 'absolute',
+    zIndex: 1,
 })
 
 export const Main: FunctionComponent<MainProps> = (props) => {
     const [typeToggleChecked, setTypeToggleChecked] = useState(true);
     return (
         <MainContainer>
-            <div style={{ height: 50, width: "100%" }} ></div>
+            <div style={{ height: 50, width: "100%", display: 'flex', justifyContent: 'flex-end' }} >
+            </div>
             <CustomBoxBlueSmall>
                 <BookmarkForm onSubmit={({ url, folder }) => {
                     console.log(url, folder)
@@ -117,6 +42,10 @@ export const Main: FunctionComponent<MainProps> = (props) => {
             </MiddleBar>
             <Cards>
                 <CardContainer>
+                    <ContainerCheckbox>
+                        <CustomizedCheckbox like={false} />
+                        <CustomizedCheckbox like={true} />
+                    </ContainerCheckbox>
                     <CardImage src={require('../../assets/images/TitleCard.png')} alt="titleCard" />
                     <MiddleText>
                         <Typography variant='h6'>Title Lorem Ipsum</Typography>

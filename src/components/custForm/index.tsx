@@ -1,7 +1,7 @@
 import { Checkbox, Typography } from '@mui/material';
 import { Field, Formik } from "formik";
 import { FunctionComponent, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { object, string } from "yup";
 import { BookMarkFormStyled, ErrorDiv, FlexDiv, FlexDiv2, Form2, FormButton, GoogleIcon, SigninWithGoogle, StyledButton } from "../../styles";
 import { RootModal } from '../FolderModal';
@@ -21,7 +21,7 @@ interface Values {
     checked: boolean;
 }
 interface Props {
-    onSubmit: (values: Values) => Promise<boolean>;
+    onSubmit: (values: Values) => void;
 }
 
 //login
@@ -58,7 +58,6 @@ interface BookmarkProps {
 
 export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
     const [error, seterror] = useState(false);
-    const navigate = useNavigate();
     if (error) {
         setTimeout(() => { seterror(false) }, 2000);
     }
@@ -66,14 +65,7 @@ export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
         <Formik
             initialValues={{ Name: "", email: "", password: "", checked: false }}
             onSubmit={values => {
-                onSubmit(values).then(
-                    (res: boolean) => {
-                        if (res)
-                            navigate('/login', { replace: true });
-                        else
-                            seterror(true);
-                    }
-                );
+                onSubmit(values)
             }}
             validationSchema={RegisterValidation}
         >

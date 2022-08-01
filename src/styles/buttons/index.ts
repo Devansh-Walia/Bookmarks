@@ -38,3 +38,20 @@ export const ModalButton = styled(Button)(({ theme }) => ({
     padding: 12,
     flex: 1
 }))
+
+
+interface toggleProps {
+    checked?: boolean;
+}
+export const ToggleButton = styled(Button)<toggleProps>(({ theme, checked }) => ({
+    backgroundColor: !checked ? theme.palette.primary.main : "#dbd4d4",
+    padding: '5px',
+    width: 'fit-content',
+    minWidth: checked ? '0px' : 'initial',
+    height: checked ? 37 : 'initial',
+    top: checked ? -2 : 'initial',
+    borcerRadius: checked ? '10px' : 'initial',
+    "&:hover": {
+        backgroundColor: !checked ? theme.palette.primary.main : "#dbd4d4",
+    }
+}))

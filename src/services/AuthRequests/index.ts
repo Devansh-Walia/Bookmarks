@@ -1,10 +1,10 @@
 import { setHeaders } from "../Headers";
-import { addDataToLocalStorage, removeDataFromLocalStorage } from "../LocalStorage";
+import { removeDataFromLocalStorage } from "../LocalStorage";
 
 const axios = require('axios');
 
 interface signInRequestProps {
-    Name: string;
+    userName: string;
     email: string;
     password: string;
 }
@@ -20,16 +20,13 @@ interface signInRequestResponseProps {
         token: string;
     }
 }
-interface RequestErrorProps {
-    error: object;
-}
-export const signInRequest = async (props: signInRequestProps) => {
+
+export const signInRequest = async (props: signInRequestProps): Promise<signInRequestResponseProps> => {
     const data = JSON.stringify({
-        "name": props.Name,
+        "name": props.userName,
         "email": props.email,
         "password": props.password
     });
-
     const config = {
         method: 'POST',
         url: `${process.env.REACT_APP_API_URL}/register`,
@@ -38,20 +35,8 @@ export const signInRequest = async (props: signInRequestProps) => {
         },
         data: data
     };
-    const res = await axios(config)
-        .then(function (response: signInRequestResponseProps) {
-            console.dir(response.data);
-            addDataToLocalStorage({ key: "@authToken", value: response.data.token });
-            return true;
-        })
-        .catch(function (error: RequestErrorProps) {
-            console.log(error);
-            return false;
-        });
-    return res;
+    return await axios(config);
 }
-
-
 
 interface logInRequestProps {
     email: string;
@@ -81,7 +66,6 @@ export const logInRequest = async ({ email, password }: logInRequestProps): Prom
         data: data
     };
     const final_config = setHeaders(temp_config);
-    console.dir(final_config, "final config");
     return await axios(final_config)
 }
 
