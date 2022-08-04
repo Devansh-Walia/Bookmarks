@@ -25,4 +25,5 @@ export const LogoTitle = styled(Typography)({
     lineHeight: '27px',
     letterSpacing: '0em',
     textAlign: 'left',
+    marginLeft: 10
 })

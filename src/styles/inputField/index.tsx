@@ -3,20 +3,26 @@ import { styled, TextField } from "@mui/material";
 import { ErrorMessage } from "formik";
 
 export const InputFieldRounded = styled(TextField)({
-    borderRadius: '20px',
     margin: 5,
-    width: '30vw'
+    width: '30vw',
+    borderRadius: 20,
+    '& .MuiOutlinedInput-root': {
+        borderRadius: 20,
+    }
 })
 export const InputFieldWhite = styled(TextField)(({ theme }) => ({
-    borderRadius: '10px',
     margin: 5,
     backgroundColor: theme.palette.primary.dark,
     width: 'inherit',
     color: 'white',
     border: 'none',
     padding: 10,
-    '&:input': {
+    '& input': {
         color: 'white'
+    },
+    borderRadius: 20,
+    '& .MuiOutlinedInput-root': {
+        borderRadius: 20,
     }
 }))
 
@@ -33,5 +39,9 @@ interface StyledSearchProps {
 export const StyledTextField = styled(TextField)<StyledSearchProps>((props) => ({
     width: props.width,
     backgroundColor: props.bgcolor,
-    margin: 10,
+    margin: 5,
+    borderRadius: 20,
+    '& .MuiOutlinedInput-root': {
+        borderRadius: 20,
+    }
 }))

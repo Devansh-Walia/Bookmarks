@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useLogout } from '../../redux/hooks/AuthHooks';
-import { Icon, StyledButton2, StyledButtonGiant } from '../../styles'
+import { AddLinkStyle, Icon, StyledButton2, StyledButtonGiant } from '../../styles'
 
 type Props = {}
 
@@ -19,7 +19,11 @@ export const Favourites: FunctionComponent<Props> = (props) => {
     return (<StyledButton2><Icon alt="fav" src={require('../../assets/icons/heart.png')} />Favourites</StyledButton2>
     )
 }
-export const AddLinkButton: FunctionComponent<Props> = (props) => {
-    return (<StyledButtonGiant variant='outlined' >+ Add Folder</StyledButtonGiant>
+export const AddLinkGiant: FunctionComponent<Props> = (props) => {
+    return (<StyledButtonGiant variant='outlined' >+ Add Link</StyledButtonGiant>
+    )
+}
+export const AddLink: FunctionComponent<Props> = (props) => {
+    return (<AddLinkStyle variant='outlined' >+ Add Link</AddLinkStyle>
     )
 }

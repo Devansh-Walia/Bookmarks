@@ -1,4 +1,4 @@
-import { authConstants } from '../../../constants';
+import { authConstants } from '../../../../constants';
 
 import { all, takeLatest, fork } from 'redux-saga/effects'
 import { getmeWatcherFunction, LoginWatcherFunction, logoutWatcherFunction, signinWatcherFunction } from '../functions';

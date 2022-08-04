@@ -20,15 +20,14 @@ function BpCheckbox(props: CheckboxProps & Props) {
             sx={{
                 borderRadius: 20,
                 backgroundColor: 'white',
-                '&:hover': { bgcolor: 'transparent' },
-                padding: props.like ? 2 : 0,
-                top: props.like ? 20 : -10,
-                left: props.like ? 0 : -10
+                padding: props.like === "fav" ? 2 : 0,
+                top: props.like === "fav" ? 20 : -10,
+                left: props.like === "fav" ? 0 : -10
             }}
             disableRipple
             color="primary"
-            checkedIcon={props.like ? <Favorite /> : <CircleCheckedFilled />}
-            icon={props.like ? <FavoriteBorder /> : <CircleChecked />}
+            checkedIcon={props.like === "fav" ? <Favorite /> : <CircleCheckedFilled />}
+            icon={props.like === "fav" ? <FavoriteBorder /> : <CircleChecked />}
             inputProps={{ 'aria-label': 'Checkbox demo' }}
             {...props}
         />
@@ -39,7 +38,7 @@ export const Div = styled('div')({
     padding: 7
 })
 interface Props {
-    like: boolean
+    like: string
 }
 export default function CustomizedCheckbox(props: Props) {
     return (

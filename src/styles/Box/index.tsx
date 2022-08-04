@@ -8,6 +8,7 @@ export const WelcomeMessage = styled(Box)({
 
 
 export const LeftPane = styled(Box)({
+    minHeight: "100vh",
     height: '100vh',
     width: '250px',
     display: 'flex',
@@ -80,4 +81,16 @@ export const CardContainer = styled(Box)({
     boxShadow: '0px 6px 12px -6px rgba(24, 39, 75, 0.12), 0px 8px 24px -4px rgba(24, 39, 75, 0.08)',
     borderRadius: 20,
 })
-
+export const ContainerCheckbox = styled('div')({
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: 'inherit',
+    position: 'absolute',
+    zIndex: 1,
+})
+export const ProfileContainer = styled('div')({ height: 50, width: "100%", display: 'flex', justifyContent: 'flex-end' });
+export const Profile = styled('div')({
+    display: "flex",
+    gap: 10,
+    height: 45, padding: 2
+})

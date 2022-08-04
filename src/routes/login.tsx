@@ -1,8 +1,10 @@
 import { FunctionComponent } from 'react'
+import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import { CustForm2 } from '../components'
 import AuthContainer from '../containers/AuthContainer'
 import { useLogin } from '../redux/hooks/AuthHooks'
+import { IRootState } from '../redux/reducers'
 import { getDataFromLocalStorage } from '../services'
 import { WelcomeMessage, Headding, HeaddingBold, CustomBoxWhiteSmall, CustomBox, Saly } from '../styles'
 
@@ -19,8 +21,10 @@ const Login: FunctionComponent<Props> = (props) => {
   const onSubmit = ({ email, password }: onSubmitValues) => {
     loggingIn({ email, password });
   }
+  const auth = useSelector((state: IRootState) => state.auth)
   if (getDataFromLocalStorage({ key: "@authToken" })) {
-    console.log("--------------------------------");
+    console.log(auth.isLoggedin);
+
     return <Navigate replace to="/" />
   }
   return (

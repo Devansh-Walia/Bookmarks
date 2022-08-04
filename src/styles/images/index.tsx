@@ -15,8 +15,8 @@ export const GoogleIcon = styled('img')({
 export const Logo = styled('img')({
     height: '57.82px',
     width: '57.84px',
-    marginLeft: 5,
-    marginTop: 5
+    marginLeft: 16,
+    marginTop: 16
 })
 
 export const Icon = styled('img')({

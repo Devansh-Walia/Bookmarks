@@ -13,6 +13,8 @@ export const addDataToLocalStorage = ({ key, value }: addDataProps) => {
 }
 
 export const getDataFromLocalStorage = ({ key }: getDataProps) => {
+    if (key === "@Canlogin")
+        setTimeout(() => { removeDataFromLocalStorage({ key }) }, 1000);
     return localStorage.getItem(key);
 }
 

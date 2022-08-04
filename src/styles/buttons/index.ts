@@ -26,6 +26,9 @@ export const StyledButtonGiant = styled(Button)(({ theme }) => ({
     height: 100,
 
 }))
+export const AddLinkStyle = styled(Button)(({ theme }) => ({
+    color: theme.palette.primary.main,
+}))
 export const FormButton = styled(Button)(({ theme }) => ({
     color: theme.palette.primary.main,
     backgroundColor: 'white',

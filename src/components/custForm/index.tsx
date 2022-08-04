@@ -50,7 +50,6 @@ interface BookmarkValues {
     folder: object;
 }
 interface BookmarkProps {
-    // onSubmit: (values: BookmarkValues) => Promise<boolean>;
     onSubmit: (values: BookmarkValues) => void;
 }
 
@@ -119,7 +118,6 @@ export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
         <Formik
             initialValues={{ email: "", password: "" }}
             onSubmit={values => {
-                console.log(values, "submitted");
                 onSubmit(values);
             }}
             validationSchema={LoginValidation}
@@ -155,7 +153,6 @@ export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
 
 export const BookmarkForm: FunctionComponent<BookmarkProps> = ({ onSubmit }) => {
     const [error, seterror] = useState(false);
-    // const navigate = useNavigate();
     if (error) {
         setTimeout(() => { seterror(false) }, 2000);
     }
@@ -163,14 +160,7 @@ export const BookmarkForm: FunctionComponent<BookmarkProps> = ({ onSubmit }) => 
         <Formik
             initialValues={{ url: "", folder: { path: 'root' } }}
             onSubmit={values => {
-                console.log(values, "submitted");
                 onSubmit(values)
-                // onSubmit(values).then((res: boolean) => {
-                //     if (res)
-                //         navigate('/');
-                //     else
-                //         seterror(true);
-                // });
             }}
             validationSchema={BookmarkValidation}
         >
