@@ -5,7 +5,6 @@ import { changeDetailsBookmark, createBookmark, DeleteBookmark, getBookmark, pat
 
 export function* CreateBookmarkWatcherFunction(action: any): Generator<any> {
     try {
-        console.log(action)
         const response: any = yield call(createBookmark, { name: action.payload.name, url: action.payload.url });
         console.log(response);
 
@@ -21,7 +20,7 @@ export function* DeleteBookmarkWatcherFunction(action: any): Generator<any> {
         const response: any = yield call(DeleteBookmark, { bookmarkId: action.payload.bookmarkId });
         console.log(response);
 
-        yield put({ type: bookmarkSucessConstants.DELETE });
+        yield put({ type: bookmarkSucessConstants.DELETE, payload: response });
     }
     catch (e) {
         yield put({ type: bookmarkFaliureConstants.DELETE })
@@ -29,11 +28,8 @@ export function* DeleteBookmarkWatcherFunction(action: any): Generator<any> {
 }
 export function* GetBookmarkWatcherFunction(action: any): Generator<any> {
     try {
-        console.log(action)
         const response: any = yield call(getBookmark, { folderId: action.payload.folderId });
-        console.log(response);
-
-        yield put({ type: bookmarkSucessConstants.READ });
+        yield put({ type: bookmarkSucessConstants.READ, payload: response.data });
     }
     catch (e) {
         yield put({ type: bookmarkFaliureConstants.READ })

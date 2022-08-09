@@ -18,5 +18,6 @@ export const BookMarkFormStyled = styled(Form)({
     height: 'fit-content',
     flex: 1,
     marginLeft: 40,
+    marginTop: 20,
     padding: 10
 })

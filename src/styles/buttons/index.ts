@@ -24,10 +24,14 @@ export const StyledButtonGiant = styled(Button)(({ theme }) => ({
     color: theme.palette.primary.main,
     width: '90%',
     height: 100,
-
+    borderRadius: 20,
+    borderWidth: 2
 }))
 export const AddLinkStyle = styled(Button)(({ theme }) => ({
     color: theme.palette.primary.main,
+    borderRadius: 20,
+    borderWidth: 2,
+    height: 50
 }))
 export const FormButton = styled(Button)(({ theme }) => ({
     color: theme.palette.primary.main,
@@ -48,12 +52,11 @@ interface toggleProps {
 }
 export const ToggleButton = styled(Button)<toggleProps>(({ theme, checked }) => ({
     backgroundColor: !checked ? theme.palette.primary.main : "#dbd4d4",
-    padding: '5px',
-    width: 'fit-content',
-    minWidth: checked ? '0px' : 'initial',
-    height: checked ? 37 : 'initial',
-    top: checked ? -2 : 'initial',
-    borcerRadius: checked ? '10px' : 'initial',
+    padding: 5,
+    minWidth: 0,
+    height: checked ? 38 : 37,
+    width: checked ? 38 : 50,
+    borderRadius: 13,
     "&:hover": {
         backgroundColor: !checked ? theme.palette.primary.main : "#dbd4d4",
     }

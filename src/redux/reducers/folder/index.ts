@@ -3,40 +3,41 @@ import { folderFaliureConstants, folderSucessConstants } from '../../../constant
 
 const initialState = {
     folders: {},
-    error: ""
+    error: "",
+    isLoading: true
 }
 const reducer = (state: any = initialState, action: folderActions) => {
     switch (action.type) {
         case folderSucessConstants.CREATE:
-            console.log("user redux creating success")
-            return { error: "", folders: { ...action.payload } };
+            console.log('folderSucessConstants.CREATE')
+            return { error: "", folders: action.payload };
 
         case folderFaliureConstants.CREATE:
-            console.log("user redux creating fail")
+            console.log('folderFaliureConstants.CREATE')
             return { ...state, error: "failed to create folder" };
 
         case folderSucessConstants.DELETE:
-            console.log("user redux delete success")
-            return { error: "", folders: { ...action.payload } };
+            console.log('folderSucessConstants.DELETE')
+            return { error: "", folders: action.payload };
 
         case folderFaliureConstants.DELETE:
-            console.log("user redux delete fail")
+            console.log('folderFaliureConstants.DELETE')
             return { ...state, error: "failed to delete folder" };
 
         case folderSucessConstants.READ:
-            console.log("user redux.READ  success")
-            return { error: "", folders: { ...action.payload } };
+            console.log('folderSucessConstants.READ')
+            return { error: "", folders: action.payload, isLoading: false };
 
         case folderFaliureConstants.READ:
-            console.log("user redux .READ fail")
-            return { ...state, error: "failed to read folders" };
+            console.log('folderFaliureConstants.READ')
+            return { ...state, error: "failed to read folders", isLoading: false };
 
         case folderSucessConstants.UPDATE:
-            console.log("user redux.UPDATE  success")
-            return { error: "", folders: { ...action.payload } };
+            console.log('folderSucessConstants.UPDATE')
+            return { error: "", folders: action.payload };
 
         case folderFaliureConstants.UPDATE:
-            console.log("user redux .UPDATE fail")
+            console.log('folderFaliureConstants.UPDATE')
             return { ...state, error: "failed to update folders" };
 
         default:

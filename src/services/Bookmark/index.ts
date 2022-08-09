@@ -1,4 +1,4 @@
-import { setHeaders, setOnlyAuth } from "../Headers";
+import { setHeaders, setOnlyAuth } from '../Headers';
 
 const axios = require('axios');
 
@@ -8,8 +8,8 @@ interface createProps {
 }
 export const createBookmark = async (props: createProps): Promise<any> => {
     const data = JSON.stringify({
-        "url": props.url,
-        "name": props.name
+        url: props.url,
+        name: props.name
     });
 
     const temp_config = {
@@ -20,7 +20,7 @@ export const createBookmark = async (props: createProps): Promise<any> => {
     const config = setHeaders(temp_config);
 
     return await axios(config);
-}
+};
 
 interface DeleteProps {
     bookmarkId: string;
@@ -28,7 +28,7 @@ interface DeleteProps {
 
 export const DeleteBookmark = async (props: DeleteProps): Promise<any> => {
     const data = JSON.stringify({
-        "bookmarkId": props.bookmarkId
+        bookmarkId: props.bookmarkId
     });
     const temp_config = {
         method: 'DELETE',
@@ -37,21 +37,21 @@ export const DeleteBookmark = async (props: DeleteProps): Promise<any> => {
     };
     const config = setHeaders(temp_config);
     return await axios(config);
-}
+};
 
-interface GetProps {
-    folderId: string;
+interface getBookmarkProps {
+    folderId?: string;
 }
-export const getBookmark = async (props: GetProps): Promise<any> => {
+export const getBookmark = async (props: getBookmarkProps): Promise<any> => {
     const data = '';
     const temp_config = {
         method: 'GET',
-        url: `${process.env.REACT_APP_API_URL}folder-bookmarks?"folderId"="${props.folderId}"`,
+        url: props.folderId ? `${process.env.REACT_APP_API_URL}/folder-bookmarks?folderId=${props.folderId}` : `${process.env.REACT_APP_API_URL}/folder-bookmarks`,
         data: data
     };
     const config = setOnlyAuth(temp_config);
     return await axios(config);
-}
+};
 
 interface patchProps {
     bookmarkId: string;
@@ -59,8 +59,8 @@ interface patchProps {
 }
 export const patchBookmark = async (props: patchProps): Promise<any> => {
     const data = JSON.stringify({
-        "bookmarkId": props.bookmarkId,
-        "folderId": props.folderId
+        bookmarkId: props.bookmarkId,
+        folderId: props.folderId
     });
     const temp_config = {
         method: 'patch',
@@ -69,14 +69,14 @@ export const patchBookmark = async (props: patchProps): Promise<any> => {
     };
     const config = setHeaders(temp_config);
     return await axios(config);
-}
+};
 
 interface toggleFavProps {
     bookmarkId: string;
 }
 export const toggleFavBookmark = async (props: toggleFavProps): Promise<any> => {
     const data = JSON.stringify({
-        "bookmarkId": props.bookmarkId,
+        bookmarkId: props.bookmarkId
     });
     const temp_config = {
         method: 'put',
@@ -85,7 +85,7 @@ export const toggleFavBookmark = async (props: toggleFavProps): Promise<any> => 
     };
     const config = setHeaders(temp_config);
     return await axios(config);
-}
+};
 
 interface changeDetailsProps {
     bookmarkId: string;
@@ -94,9 +94,9 @@ interface changeDetailsProps {
 }
 export const changeDetailsBookmark = async (props: changeDetailsProps): Promise<any> => {
     const data = JSON.stringify({
-        "bookmarkId": props.bookmarkId,
-        "name": props.name,
-        "url": props.url
+        bookmarkId: props.bookmarkId,
+        name: props.name,
+        url: props.url
     });
     const temp_config = {
         method: 'put',
@@ -105,4 +105,4 @@ export const changeDetailsBookmark = async (props: changeDetailsProps): Promise<
     };
     const config = setHeaders(temp_config);
     return await axios(config);
-}
+};

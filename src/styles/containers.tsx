@@ -56,5 +56,9 @@ export const DashContainer = styled(Box)({
     display: 'flex',
     flexDirection: 'row',
     backgroundColor: 'white',
+    overflow: 'hidden',
+    height: '100vh',
+    width: '100vw'
+
 })
 

@@ -22,10 +22,10 @@ function BpCheckbox(props: CheckboxProps & Props) {
                 backgroundColor: 'white',
                 padding: props.like === "fav" ? 2 : 0,
                 top: props.like === "fav" ? 20 : -10,
-                left: props.like === "fav" ? 0 : -10
+                left: props.like === "fav" ? 0 : -10,
+                fill: props.like === "fav" ? "#E01A1A" : "primary"
             }}
             disableRipple
-            color="primary"
             checkedIcon={props.like === "fav" ? <Favorite /> : <CircleCheckedFilled />}
             icon={props.like === "fav" ? <FavoriteBorder /> : <CircleChecked />}
             inputProps={{ 'aria-label': 'Checkbox demo' }}

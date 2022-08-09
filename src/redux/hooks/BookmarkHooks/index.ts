@@ -1,10 +1,25 @@
-// import { useDispatch } from "react-redux";
-// interface loginPayload {
-//     email: string,
-//     password: string
-// }
-export const useAdd = () => {
-    // const dispatch = useDispatch();
-    // const loggingIn = (payload: loginPayload) => login(payload.email, payload.password)(dispatch);
-    // return [loggingIn];
+import { useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { createBookmarkAction, getBookmarkAction } from "../../action-creators/bookmark";
+
+interface AddPayload {
+    url: string;
+    folder: string;
+}
+export const useAddBookmark = () => {
+    const dispatch = useDispatch();
+    const addBookmark = useCallback(
+        (payload: AddPayload) => dispatch(createBookmarkAction(payload.folder, payload.url)),
+        [dispatch]);
+
+    return [addBookmark];
+}
+
+export const useGetBookmark = () => {
+    const dispatch = useDispatch();
+    const getBookmark = useCallback(
+        () => dispatch(getBookmarkAction()),
+        [dispatch]);
+
+    return [getBookmark];
 }

@@ -19,8 +19,9 @@ export const getDataFromLocalStorage = ({ key }: getDataProps) => {
 }
 
 export const removeDataFromLocalStorage = ({ key }: removeDataProps) => {
-    if (key === "@authToken")
+    if (key === "@authToken") {
         localStorage.clear()
+    }
     else
         localStorage.removeItem(key)
 }

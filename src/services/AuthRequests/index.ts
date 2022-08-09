@@ -71,4 +71,15 @@ export const logInRequest = async ({ email, password }: logInRequestProps): Prom
 
 export const logoutRequest = async () => {
     removeDataFromLocalStorage({ key: "@authToken" });
+    console.log("delete");
+
+}
+
+export const getmeRequest = async () => {
+    const temp_config = {
+        method: 'GET',
+        url: `${process.env.REACT_APP_API_URL}/me`,
+    };
+    const final_config = setHeaders(temp_config);
+    return await axios(final_config)
 }

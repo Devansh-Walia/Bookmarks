@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { login, logout, signin } from "../../action-creators"
+import { getme, login, logout, signin } from "../../action-creators"
 
 interface loginPayload {
     email: string,
@@ -9,7 +9,9 @@ interface loginPayload {
 export const useLogin = () => {
     const dispatch = useDispatch();
 
-    const loggingIn = useCallback((payload: loginPayload) => login(payload.email, payload.password)(dispatch), [dispatch]);
+    const loggingIn = useCallback(
+        (payload: loginPayload) => dispatch(login(payload.email, payload.password)),
+        [dispatch]);
 
     return [loggingIn];
 }
@@ -20,13 +22,22 @@ interface signinPayload {
 }
 export const useSignin = () => {
     const dispatch = useDispatch();
-    const signingIn = (payload: signinPayload) => signin(payload.userName, payload.email, payload.password)(dispatch);
+    const signingIn = useCallback(
+        (payload: signinPayload) => dispatch(signin(payload.userName, payload.email, payload.password)),
+        [dispatch]);
     return [signingIn];
 }
 
 
 export const useLogout = () => {
     const dispatch = useDispatch();
-    const loggingOut = () => logout()(dispatch);
+    const loggingOut = useCallback(() => dispatch(logout()), [dispatch]);
     return [loggingOut];
+}
+
+export const useGetUser = () => {
+    const dispatch = useDispatch();
+    const getUser = useCallback(() => dispatch(getme()), [dispatch]);
+
+    return [getUser];
 }

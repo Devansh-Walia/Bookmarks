@@ -1,37 +1,35 @@
-import { Dispatch } from 'redux';
 import { bookmarkConstants } from '../../../constants';
-import { bookmarkActions } from '../../actions';
 
 export const createBookmarkAction = (name: string, url: string,) => {
-    return (dispatch: Dispatch<bookmarkActions>) => dispatch({
+    return {
         type: bookmarkConstants.CREATE,
         payload: { name, url }
-    })
+    }
 }
-export const DeleteBookmarkAction = (bid: string) => {
-    return (dispatch: Dispatch<bookmarkActions>) => dispatch({ type: bookmarkConstants.DELETE, payload: { bid } })
+export const DeleteBookmarkAction = (bookmarkId: string) => {
+    return { type: bookmarkConstants.DELETE, payload: { bookmarkId } }
 }
-export const getBookmarkAction = (folderId: string) => {
-    return (dispatch: Dispatch<bookmarkActions>) => dispatch({
+export const getBookmarkAction = (folderId?: string) => {
+    return {
         type: bookmarkConstants.READ,
-        payload: { folderId }
-    })
+        payload: folderId ? { folderId } : {}
+    }
 }
-export const patchBookmarkAction = (bid: string, fid: string) => {
-    return (dispatch: Dispatch<bookmarkActions>) => dispatch({
+export const patchBookmarkAction = (bookmarkId: string, folderId: string) => {
+    return {
         type: bookmarkConstants.PATCH,
-        payload: { bid, fid }
-    })
+        payload: { bookmarkId, folderId }
+    }
 }
-export const toggleFavBookmarkAction = (bid: string) => {
-    return (dispatch: Dispatch<bookmarkActions>) => dispatch({
+export const toggleFavBookmarkAction = (bookmarkId: string) => {
+    return {
         type: bookmarkConstants.TOGGLE,
-        payload: { bid }
-    })
+        payload: { bookmarkId }
+    }
 }
-export const changeDetailsBookmarkAction = (bid: string, name: string, url: string) => {
-    return (dispatch: Dispatch<bookmarkActions>) => dispatch({
+export const changeDetailsBookmarkAction = (bookmarkId: string, name: string, url: string) => {
+    return {
         type: bookmarkConstants.CHANGE_DETAILS,
-        payload: { bid, name, url }
-    })
+        payload: { bookmarkId, name, url }
+    }
 }

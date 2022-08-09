@@ -1,6 +1,6 @@
 import { authFaliureConstants, authSucessConstants } from '../../../../constants';
 import { call, put } from 'redux-saga/effects'
-import { addDataToLocalStorage, logInRequest, logoutRequest, signInRequest } from '../../../../services';
+import { addDataToLocalStorage, getmeRequest, logInRequest, logoutRequest, signInRequest } from '../../../../services';
 
 
 export function* LoginWatcherFunction(action: any): Generator<any> {
@@ -31,6 +31,6 @@ export function* signinWatcherFunction(action: any): Generator<any> {
     }
 }
 export function* getmeWatcherFunction(action: any): Generator<any> {
-
-    yield put({ type: authSucessConstants.GETME });
+    const response: any = yield call(getmeRequest);
+    yield put({ type: authSucessConstants.GETME, payload: response.data });
 } 

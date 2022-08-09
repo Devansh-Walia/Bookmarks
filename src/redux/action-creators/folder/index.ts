@@ -1,28 +1,26 @@
-import { Dispatch } from 'redux';
 import { folderConstants } from '../../../constants';
-import { folderActions } from '../../actions';
 
 export const createFolderAction = (parentId: string, name: string) => {
-    return (dispatch: Dispatch<folderActions>) => dispatch({
+    return {
         type: folderConstants.CREATE,
         payload: { parentId, name }
-    })
+    }
 }
 export const DeletefolderAction = (fid: string) => {
-    return (dispatch: Dispatch<folderActions>) => dispatch({
+    return {
         type: folderConstants.DELETE,
         payload: { fid: fid }
-    })
+    }
 }
-export const getFolderAction = (folderId: string) => {
-    return (dispatch: Dispatch<folderActions>) => dispatch({
+export const getFolderAction = (folderId?: string) => {
+    return {
         type: folderConstants.READ,
-        payload: { folderId }
-    })
+        payload: folderId ? { folderId } : {}
+    }
 }
 export const renameFolderAction = (name: string, folderId: string) => {
-    return (dispatch: Dispatch<folderActions>) => dispatch({
+    return {
         type: folderConstants.UPDATE,
         payload: { name, folderId }
-    })
+    }
 }

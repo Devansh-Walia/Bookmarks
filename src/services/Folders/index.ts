@@ -39,13 +39,16 @@ export const DeleteFolder = async (props: DeleteProps): Promise<any> => {
 }
 
 interface GetProps {
-    folderId: string;
+    folderId?: string;
 }
 export const getFolder = async (props: GetProps): Promise<any> => {
     const data = '';
     const temp_config = {
         method: 'GET',
-        url: `${process.env.REACT_APP_API_URL}folders?"folderId"="${props.folderId}"`,
+        url: (props.folderId) ?
+            `${process.env.REACT_APP_API_URL}/folders?folderId=${props.folderId}` :
+            `${process.env.REACT_APP_API_URL}/folders`
+        ,
         data: data
     };
     const config = setOnlyAuth(temp_config);

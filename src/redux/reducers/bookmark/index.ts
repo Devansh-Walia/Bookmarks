@@ -2,55 +2,55 @@ import { bookmarkActions } from "../../actions";
 import { bookmarkFaliureConstants, bookmarkSucessConstants } from '../../../constants'
 
 const initialState = {
-    bookmarks: {},
-    error: ""
+    bookmarks: [],
+    error: "",
+    isLoading: true
 }
 const reducer = (state: any = initialState, action: bookmarkActions) => {
     switch (action.type) {
         case bookmarkSucessConstants.CREATE:
-            console.log("user redux creating success")
-            return { error: "", bookmarks: { ...action.payload } };
+            console.log('bookmarkSucessConstants.CREATE')
+            return { error: "", bookmarks: action.payload };
 
         case bookmarkFaliureConstants.CREATE:
-            console.log("user redux creating fail")
+            console.log('bookmarkFaliureConstants.CREATE')
             return { ...state, error: "failed to create bookmark" };
 
         case bookmarkSucessConstants.DELETE:
-            console.log("user redux delete success")
-            return { error: "", bookmarks: { ...action.payload } };
+            console.log('bookmarkSucessConstants.DELETE')
+            return { error: "", bookmarks: action.payload };
 
         case bookmarkFaliureConstants.DELETE:
-            console.log("user redux delete fail")
+            console.log('bookmarkFaliureConstants.DELETE')
             return { ...state, error: "failed to delete bookmark" };
 
         case bookmarkSucessConstants.READ:
-            console.log("user redux.READ  success")
-            return { error: "", bookmarks: { ...action.payload } };
+            console.log('bookmarkSucessConstants.READ')
+            return { error: "", bookmarks: action.payload, isLoading: false };
 
         case bookmarkFaliureConstants.READ:
-            console.log("user redux .READ fail")
-            return { ...state, error: "failed to read bookmarks" };
+            console.log('bookmarkFaliureConstants.READ')
+            return { ...state, error: "failed to read bookmarks", isLoading: false };
 
         case bookmarkSucessConstants.PATCH:
-            console.log("user redux.PATCH  success")
-            return { error: "", bookmarks: { ...action.payload } };
+            console.log('bookmarkSucessConstants.PATCH')
+            return { error: "", bookmarks: action.payload };
 
         case bookmarkFaliureConstants.PATCH:
-            console.log("user redux .PATCH fail")
+            console.log('bookmarkFaliureConstants.PATCH')
             return { ...state, error: "failed to.PATCH bookmarks" };
         case bookmarkSucessConstants.TOGGLE:
-            console.log("user redux.TOGGLE  success")
-            return { error: "", bookmarks: { ...action.payload } };
+            console.log('bookmarkSucessConstants.TOGGLE')
+            return { error: "", bookmarks: action.payload };
 
         case bookmarkFaliureConstants.TOGGLE:
-            console.log("user redux .TOGGLE fail")
+            console.log('bookmarkFaliureConstants.TOGGLE')
             return { ...state, error: "failed to.TOGGLE bookmarks" };
         case bookmarkSucessConstants.CHANGE_DETAILS:
-            console.log("user redux.CHANGE_DETAILS  success")
-            return { error: "", bookmarks: { ...action.payload } };
+            console.log('bookmarkSucessConstants.CHANGE_DETAILS')
+            return { error: "", bookmarks: action.payload };
 
         case bookmarkFaliureConstants.CHANGE_DETAILS:
-            console.log("user redux .CHANGE_DETAILS fail")
             return { ...state, error: "failed to.CHANGE_DETAILS bookmarks" };
 
         default:

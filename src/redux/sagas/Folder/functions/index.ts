@@ -29,14 +29,11 @@ export function* DeleteFolderWatcherFunction(action: any): Generator<any> {
 }
 export function* GetFolderWatcherFunction(action: any): Generator<any> {
     try {
-        console.log(action)
         const response: any = yield call(getFolder, { folderId: action.payload.folderId });
-        console.log(response);
-
-        yield put({ type: folderSucessConstants.READ });
+        yield put({ type: folderSucessConstants.READ, payload: response.data });
     }
     catch (e) {
-        yield put({ type: folderFaliureConstants.READ })
+        yield put({ type: folderFaliureConstants.READ, payload: e })
     }
 }
 export function* RenameFolderWatcherFunction(action: any): Generator<any> {

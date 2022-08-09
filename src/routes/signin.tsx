@@ -1,14 +1,14 @@
-import { FunctionComponent } from 'react'
-import { useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
-import { CustForm } from '../components'
-import AuthContainer from '../containers/AuthContainer'
-import { useSignin } from '../redux/hooks/AuthHooks'
-import { IRootState } from '../redux/reducers'
-import { getDataFromLocalStorage } from '../services'
-import { WelcomeMessage, Headding, HeaddingBold, CustomBoxWhiteSmall, CustomBox, Saly } from '../styles'
+import { FunctionComponent } from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { CustForm } from '../components';
+import AuthContainer from '../containers/AuthContainer';
+import { useSignin } from '../redux/hooks/AuthHooks';
+import { IRootState } from '../redux/reducers';
+import { getDataFromLocalStorage } from '../services';
+import { WelcomeMessage, Headding, HeaddingBold, CustomBoxWhiteSmall, CustomBox, Saly } from '../styles';
 
-type Props = {}
+type Props = {};
 
 interface onSubmitValues {
     Name: string;
@@ -21,29 +21,27 @@ const Signin: FunctionComponent<Props> = (props) => {
 
     const onSubmit = ({ Name, email, password }: onSubmitValues) => {
         signingIn({ userName: Name, email: email, password: password });
-    }
+    };
     const auth = useSelector((state: IRootState) => state.auth);
-    if (getDataFromLocalStorage({ key: "@CanLogin" })) {
+    if (getDataFromLocalStorage({ key: '@CanLogin' })) {
         console.log(auth);
 
-        return <Navigate replace to="/" />
+        return <Navigate replace to="/" />;
     }
     return (
         <AuthContainer>
             <CustomBox>
-                <WelcomeMessage >
+                <WelcomeMessage>
                     <Headding>Welcome,</Headding>
                     <HeaddingBold>Get Started</HeaddingBold>
                 </WelcomeMessage>
-                <Saly src={require('../assets/images/Saly.png')} alt="saly" />
+                <Saly src={'assets/images/Saly.png'} alt="saly" />
             </CustomBox>
             <CustomBoxWhiteSmall>
                 <CustForm onSubmit={onSubmit} />
             </CustomBoxWhiteSmall>
         </AuthContainer>
-    )
-}
+    );
+};
 
-export { Signin }
-
-
+export { Signin };
