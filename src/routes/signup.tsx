@@ -35,7 +35,7 @@ const Signin: FunctionComponent<Props> = (props) => {
                     <Headding>Welcome,</Headding>
                     <HeaddingBold>Get Started</HeaddingBold>
                 </WelcomeMessage>
-                <Saly src={'assets/images/Saly.png'} alt="saly" />
+                <Saly src={'/assets/images/Saly.png'} alt="saly" />
             </CustomBox>
             <CustomBoxWhiteSmall>
                 <CustForm onSubmit={onSubmit} />

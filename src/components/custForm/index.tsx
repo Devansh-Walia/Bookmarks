@@ -77,7 +77,7 @@ export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
                     </StyledButton>
                     Or
                     <SigninWithGoogle variant="outlined">
-                        <GoogleIcon src={'assets/icons/google.png'} /> Sign Up With Google
+                        <GoogleIcon src={'/assets/icons/google.png'} /> Sign Up With Google
                     </SigninWithGoogle>
                     <FlexDiv>
                         Already have an account? <Link to="/login">Login</Link>
@@ -113,7 +113,7 @@ export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
                     </StyledButton>
                     {error && <ErrorDiv>either the email or the password is wrong</ErrorDiv>}
                     <FlexDiv>
-                        Don't have an account? <Link to="/signin">Signin</Link>
+                        Don't have an account? <Link to="/signup">Signup</Link>
                     </FlexDiv>
                 </Form2>
             )}

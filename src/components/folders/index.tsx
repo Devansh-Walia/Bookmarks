@@ -1,13 +1,28 @@
-import { FunctionComponent } from 'react'
-import { FolderDiv } from '../../styles'
-import { AddLinkGiant } from '../buttons'
+import { FunctionComponent } from 'react';
+import { FolderDiv } from '../../styles';
+import { AddLinkGiant, FolderButton } from '../buttons';
 
-type Props = {}
+interface FolderProps {
+    createdAt?: string;
+    deletedAt?: string;
+    id?: string;
+    name?: string;
+    updatedAt?: string;
+}
+type Props = {
+    folders: FolderProps[];
+};
 
-export const Folders: FunctionComponent<Props> = (props) => {
+export const Folders: FunctionComponent<Props> = ({ folders }) => {
     return (
         <FolderDiv>
-            <AddLinkGiant />
+            {folders.length === 0 ? (
+                <AddLinkGiant />
+            ) : (
+                folders.map((folder) => {
+                    return <FolderButton key={folder.id} id={folder.id!} name={folder.name!} />;
+                })
+            )}
         </FolderDiv>
-    )
-}
+    );
+};

@@ -12,14 +12,14 @@ export const ProfileSection: FunctionComponent<IpropsProfile> = ({ user }) => {
     return (
         <ProfileContainer>
             <Profile>
-                <img src={'assets/images/profile.png'} alt="" />
+                <img src={'/assets/images/profile.png'} alt="" />
                 <div>
                     <Typography>{user ? user.email : 'Email'}</Typography>
                     <Typography>{user ? user.name : 'Name'}</Typography>
                 </div>
             </Profile>
             <Button>
-                <Icon src={'assets/icons/ArrowHead.png'} style={{ transform: 'rotate(90deg)' }} alt="" />
+                <Icon src={'/assets/icons/ArrowHead.png'} style={{ transform: 'rotate(90deg)' }} alt="" />
             </Button>
         </ProfileContainer>
     );

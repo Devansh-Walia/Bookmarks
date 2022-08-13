@@ -23,7 +23,7 @@ export const Main: FunctionComponent<MainProps> = (props) => {
                         addBookmark({ folder, url });
                     }}
                 />
-                <FormImage alt="" src={'assets/images/juggle.png'} />
+                <FormImage alt="" src={'/assets/images/juggle.png'} />
             </CustomBoxBlueSmall>
             <MiddleBar />
             <Cards>

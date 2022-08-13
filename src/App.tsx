@@ -1,22 +1,24 @@
-import { FunctionComponent } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Dash, Login, Signin } from './routes'
-import { getDataFromLocalStorage } from './services'
+import { FunctionComponent } from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Dash, Login, Signin } from './routes';
+import { getDataFromLocalStorage } from './services';
 
-interface IAppProps {
-
-}
+interface IAppProps {}
 
 const App: FunctionComponent<IAppProps> = (props) => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={getDataFromLocalStorage({ key: "@authToken" }) ? <Dash /> : <Login />} />
-                <Route path='login' element={<Login />} />
-                <Route path='signin' element={<Signin />} />
+                <Route path="/" element={<Navigate to="/dash" />} />
+                <Route path="/dash" element={getDataFromLocalStorage({ key: '@authToken' }) ? <Dash /> : <Login />}>
+                    <Route path=":id" element={getDataFromLocalStorage({ key: '@authToken' }) ? <Dash /> : <Login />} />
+                </Route>
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signin />} />
+                <Route path="*" element={<Navigate to="/dash" />} />
             </Routes>
         </BrowserRouter>
-    )
-}
+    );
+};
 
-export default App
+export default App;

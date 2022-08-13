@@ -1,7 +1,8 @@
-import { IconButton, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { FunctionComponent } from 'react';
-import { CardContainer, CardImage, ContainerCheckbox, MiddleText } from '../../../styles';
+import { CardContainer, CardImage, ContainerCheckbox, MiddleText, TitleCardText } from '../../../styles';
 import CustomizedCheckbox from '../../checkboxes';
+import CardMenu from '../Menu';
 
 interface ICardProps {
     bookmark: {
@@ -20,19 +21,17 @@ export const Card: FunctionComponent<ICardProps> = ({ bookmark }) => {
     let name = bookmark.name || bookmark.url;
     if (name) name = name.length > 10 ? name.substring(0, 10) + '...' : name;
     let description = bookmark.description || 'No description';
-    if (description) description = description.length > 30 ? description.substring(0, 30) + '...' : description;
+    if (description) description = description.length > 40 ? description.substring(0, 40) + '...' : description;
     return (
         <CardContainer>
             <ContainerCheckbox>
                 <CustomizedCheckbox like={'check'} />
                 <CustomizedCheckbox like={'fav'} />
             </ContainerCheckbox>
-            <CardImage src={'assets/images/TitleCard.png'} alt="titleCard" />
+            <CardImage src={'/assets/images/TitleCard.png'} alt="titleCard" />
             <MiddleText>
-                <Typography variant="h6">{name}</Typography>
-                <IconButton aria-label="moreVertical">
-                    <img src={'assets/icons/3dot.png'} alt="" />
-                </IconButton>
+                <TitleCardText variant="h6">{name}</TitleCardText>
+                <CardMenu />
             </MiddleText>
             <div>
                 <Typography className="bookmark-card-bottom-text">{description}</Typography>

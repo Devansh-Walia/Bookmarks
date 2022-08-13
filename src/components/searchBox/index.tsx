@@ -16,7 +16,7 @@ export const SearchBox: FunctionComponent<StyledSearchProps> = (props) => {
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
-                            <img src={'assets/icons/search.png'} alt="search" />
+                            <img src={'/assets/icons/search.png'} alt="search" />
                         </InputAdornment>
                     )
                 }}

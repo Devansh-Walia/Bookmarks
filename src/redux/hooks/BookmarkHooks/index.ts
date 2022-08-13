@@ -18,7 +18,7 @@ export const useAddBookmark = () => {
 export const useGetBookmark = () => {
     const dispatch = useDispatch();
     const getBookmark = useCallback(
-        () => dispatch(getBookmarkAction()),
+        (folderId?: string) => dispatch(getBookmarkAction(folderId)),
         [dispatch]);
 
     return [getBookmark];

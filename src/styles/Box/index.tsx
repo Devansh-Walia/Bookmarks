@@ -19,8 +19,25 @@ export const LeftPane = styled(Box)({
 
 export const FolderDiv = styled(Box)({
     height: '80%',
-    width: '100%',
-    padding: 10
+    width: '90%',
+    marginLeft: 20,
+    overflowY: 'scroll',
+    overflowX: 'hidden',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: 10,
+    '&::-webkit-scrollbar': {
+        width: '0.2em'
+    },
+    '&::-webkit-scrollbar-track': {
+        webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+    },
+    '&::-webkit-scrollbar-thumb': {
+        backgroundColor: 'rgba(0,0,0,.1)',
+        outline: '1px solid slategrey',
+        borderRadius: 50
+    }
 });
 
 export const MiddleBar = styled(Box)({

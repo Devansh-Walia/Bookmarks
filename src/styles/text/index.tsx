@@ -1,4 +1,4 @@
-import { styled, Typography } from "@mui/material";
+import { styled, Typography } from '@mui/material';
 
 export const Headding = styled(Typography)({
     fontSize: 40,
@@ -7,7 +7,7 @@ export const Headding = styled(Typography)({
     letterSpacing: ' 0.03em',
     color: '#FFFFFF',
     display: 'block'
-})
+});
 
 export const HeaddingBold = styled(Typography)({
     fontSize: 40,
@@ -16,7 +16,7 @@ export const HeaddingBold = styled(Typography)({
     letterSpacing: ' 0.03em',
     color: '#FFFFFF',
     display: 'block'
-})
+});
 
 export const LogoTitle = styled(Typography)({
     fonFamily: 'Inter',
@@ -26,4 +26,15 @@ export const LogoTitle = styled(Typography)({
     letterSpacing: '0em',
     textAlign: 'left',
     marginLeft: 10
-})
+});
+
+export const TitleCardText = styled(Typography)({
+    fontSize: '23px',
+    fontWeight: 700,
+    lineHeight: '27px',
+    letterSpacing: '0em',
+    textAlign: 'left',
+    marginLeft: 10,
+    minWidth: 140,
+    maxWidth: 150
+});

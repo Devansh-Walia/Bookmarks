@@ -18,7 +18,7 @@ export const useAddFolder = () => {
 export const useGetFolder = () => {
     const dispatch = useDispatch();
     const getFolder = useCallback(
-        () => dispatch(getFolderAction()),
+        (folderId?: string) => dispatch(getFolderAction()),
         [dispatch]);
 
     return [getFolder];
