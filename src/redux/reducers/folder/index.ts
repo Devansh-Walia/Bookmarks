@@ -41,7 +41,7 @@ const reducer = (state: any = initialState, action: folderActions) => {
             return { ...state, error: "failed to update folders" };
 
         default:
-            return state;
+            return { ...state, error: null };
     }
 }
 

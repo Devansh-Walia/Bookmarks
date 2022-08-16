@@ -82,6 +82,7 @@ export const MainContainer = styled(Box)({
     flex: 3,
     marginLeft: 20,
     overflowY: 'scroll',
+    overflowX: 'hidden',
     '&::-webkit-scrollbar': {
         width: '0.2em'
     },

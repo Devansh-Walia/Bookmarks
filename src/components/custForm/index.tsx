@@ -1,8 +1,10 @@
 import { Checkbox, Typography } from '@mui/material';
 import { Field, Formik } from 'formik';
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { object, string } from 'yup';
+import { IRootState } from '../../redux/reducers';
 import { BookMarkFormStyled, ErrorDiv, FlexDiv, FlexDiv2, Form2, FormButton, GoogleIcon, ModalButton, SigninWithGoogle, StyledButton } from '../../styles';
 import { inputField, inputFieldAddForm } from '../inputField';
 
@@ -48,17 +50,28 @@ interface BookmarkProps {
 }
 
 export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
-    const [error, seterror] = useState(false);
+    const [error, setError] = useState(false);
     if (error) {
         setTimeout(() => {
-            seterror(false);
-        }, 2000);
+            setError(false);
+        }, 3000);
     }
+    const [loading, setLoading] = useState(false);
+    const auth = useSelector((state: IRootState) => state.auth);
+    useEffect(() => {
+        if (auth.error) {
+            setError(auth.error);
+            setLoading(false);
+        }
+        return () => setError(false);
+    }, [auth.error]);
+
     return (
         <Formik
             initialValues={{ Name: '', email: '', password: '', checked: false }}
             onSubmit={(values) => {
                 onSubmit(values);
+                setLoading(true);
             }}
             validationSchema={RegisterValidation}
         >
@@ -72,8 +85,15 @@ export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
                         By signing in, you agree to the <Link to="#">Terms of service and Privacy policy</Link>
                     </FlexDiv>
                     {error && <ErrorDiv>user Already Exists, please try another email id</ErrorDiv>}
-                    <StyledButton variant="contained" type="submit">
-                        Submit
+                    <StyledButton disabled={loading} variant="contained" type="submit">
+                        {!loading ? (
+                            'Sign Up'
+                        ) : (
+                            <>
+                                <img height={'10px'} src="assets/icons/Rolling.svg" alt="" />
+                                Loading
+                            </>
+                        )}
                     </StyledButton>
                     Or
                     <SigninWithGoogle variant="outlined">
@@ -89,17 +109,28 @@ export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
 };
 
 export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
-    const [error, seterror] = useState(false);
+    const [error, setError] = useState(false);
     if (error) {
         setTimeout(() => {
-            seterror(false);
-        }, 2000);
+            setError(false);
+        }, 3000);
     }
+    const [loading, setLoading] = useState(false);
+    const auth = useSelector((state: IRootState) => state.auth);
+    useEffect(() => {
+        if (auth.error) {
+            setError(auth.error);
+            setLoading(false);
+        }
+        return () => setError(false);
+    }, [auth.error]);
+
     return (
         <Formik
             initialValues={{ email: '', password: '' }}
             onSubmit={(values) => {
                 onSubmit(values);
+                setLoading(true);
             }}
             validationSchema={LoginValidation}
         >
@@ -107,11 +138,20 @@ export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
                 <Form2>
                     <Field name="email" placeholder="Email" type="email" required={true} component={inputField} />
                     <Field name="password" placeholder="Password" type="password" required={true} component={inputField} />
-
-                    <StyledButton variant="contained" type="submit">
-                        Log in
-                    </StyledButton>
                     {error && <ErrorDiv>either the email or the password is wrong</ErrorDiv>}
+                    <StyledButton disabled={loading} variant="contained" type="submit">
+                        {!loading ? (
+                            'Login'
+                        ) : (
+                            <>
+                                <img height={'10px'} src="assets/icons/Rolling.svg" alt="" />
+                                Loading
+                            </>
+                        )}
+                    </StyledButton>
+                    <FlexDiv>
+                        <Link to="_blank">Forgot Password</Link>
+                    </FlexDiv>
                     <FlexDiv>
                         Don't have an account? <Link to="/signup">Signup</Link>
                     </FlexDiv>
@@ -122,12 +162,19 @@ export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
 };
 
 export const BookmarkForm: FunctionComponent<BookmarkProps> = ({ onSubmit }) => {
-    const [error, seterror] = useState(false);
+    const [error, setError] = useState(false);
     if (error) {
         setTimeout(() => {
-            seterror(false);
-        }, 2000);
+            setError(false);
+        }, 3000);
     }
+    const bookmark = useSelector((state: IRootState) => state.bookmark);
+    useEffect(() => {
+        if (bookmark.error) {
+            setError(bookmark.error);
+        }
+        return () => setError(false);
+    }, [bookmark.error]);
     return (
         <Formik
             initialValues={{ url: '', folder: '/' }}
@@ -151,7 +198,7 @@ export const BookmarkForm: FunctionComponent<BookmarkProps> = ({ onSubmit }) => 
                             Save
                         </FormButton>
                     </FlexDiv2>
-                    {error && <ErrorDiv>user Already Exists, please try another email id</ErrorDiv>}
+                    {error && <ErrorDiv>invalid link</ErrorDiv>}
                 </BookMarkFormStyled>
             )}
         </Formik>

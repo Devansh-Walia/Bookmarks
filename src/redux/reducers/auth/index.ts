@@ -2,10 +2,11 @@ import { authActions } from "../../actions";
 import { authFaliureConstants, authSucessConstants } from '../../../constants'
 
 const initialState = {
-    isLoggedin: false,
-    isSignedin: false,
     user: null,
-    isLoading: true
+    isSignedin: false,
+    isLoggedin: false,
+    isLoading: true,
+    error: null
 }
 const reducer = (state: any = initialState, action: authActions) => {
     switch (action.type) {
@@ -14,14 +15,14 @@ const reducer = (state: any = initialState, action: authActions) => {
             return { ...state, isLoggedin: true };
         case authFaliureConstants.LOGIN:
             console.log('authFaliureConstants.LOGIN')
-            return state;
+            return { ...state, error: "Log in faliure, check email or password" };
 
         case authSucessConstants.SIGNIN:
             console.log('authSucessConstants.SIGNIN')
             return { ...state, isSignedin: true };
         case authFaliureConstants.SIGNIN:
             console.log('authFaliureConstants.SIGNIN')
-            return state;
+            return { ...state, error: "Sign up faliure, user already exists with the email" };
 
         case authSucessConstants.LOGOUT:
             console.log('authSucessConstants.LOGOUT')
@@ -39,7 +40,7 @@ const reducer = (state: any = initialState, action: authActions) => {
             return { ...state, user: null, isLoading: false };
 
         default:
-            return state;
+            return { ...state, error: null };
     }
 }
 

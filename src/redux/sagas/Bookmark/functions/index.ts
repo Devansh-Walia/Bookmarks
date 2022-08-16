@@ -5,10 +5,8 @@ import { CHANGE_DETAILS, CREATE, DELETE, PATCH, READ, TOGGLE } from '../../../ac
 
 export function* CreateBookmarkWatcherFunction(action: CREATE): Generator<any> {
     try {
-        const response: any = yield call(createBookmark, { name: action.payload.name, url: action.payload.url });
-        console.log(response);
-
-        yield put({ type: bookmarkSucessConstants.CREATE });
+        const response: any = yield call(createBookmark, { url: action.payload.url });
+        yield put({ type: bookmarkSucessConstants.CREATE, payload: { bookmark: response.data } });
     }
     catch (e) {
         yield put({ type: bookmarkFaliureConstants.CREATE })

@@ -28,7 +28,9 @@ export const Card: FunctionComponent<ICardProps> = ({ bookmark }) => {
                 <CustomizedCheckbox like={'check'} />
                 <CustomizedCheckbox like={'fav'} />
             </ContainerCheckbox>
-            <CardImage src={'/assets/images/TitleCard.png'} alt="titleCard" />
+            <a href={bookmark.url!} target={'_blank'} rel="noreferrer">
+                <CardImage src={bookmark.imageUrl ? bookmark.imageUrl : '/assets/images/TitleCard.png'} alt="titleCard" />
+            </a>
             <MiddleText>
                 <TitleCardText variant="h6">{name}</TitleCardText>
                 <CardMenu />

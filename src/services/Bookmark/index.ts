@@ -3,14 +3,11 @@ import { setHeaders, setOnlyAuth } from '../Headers';
 const axios = require('axios');
 
 interface createProps {
-    name: string;
+    name?: string;
     url: string;
 }
 export const createBookmark = async (props: createProps): Promise<any> => {
-    const data = JSON.stringify({
-        url: props.url,
-        name: props.name
-    });
+    const data = JSON.stringify(props);
 
     const temp_config = {
         method: 'post',

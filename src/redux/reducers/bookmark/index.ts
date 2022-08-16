@@ -10,7 +10,7 @@ const reducer = (state: any = initialState, action: bookmarkActions) => {
     switch (action.type) {
         case bookmarkSucessConstants.CREATE:
             console.log('bookmarkSucessConstants.CREATE')
-            return { error: "", bookmarks: action.payload };
+            return { ...state, error: "", bookmarks: [...state.bookmarks, action.payload.bookmark] };
 
         case bookmarkFaliureConstants.CREATE:
             console.log('bookmarkFaliureConstants.CREATE')
@@ -54,7 +54,7 @@ const reducer = (state: any = initialState, action: bookmarkActions) => {
             return { ...state, error: "failed to.CHANGE_DETAILS bookmarks" };
 
         default:
-            return state;
+            return { ...state, error: null };
     }
 }
 

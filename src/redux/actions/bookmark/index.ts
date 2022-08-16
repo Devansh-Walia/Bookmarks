@@ -8,7 +8,7 @@ export interface PATCH { type: bookmarkConstants.PATCH, payload: { bookmarkId: s
 export interface TOGGLE { type: bookmarkConstants.TOGGLE, payload: { bookmarkId: string } }
 export interface CHANGE_DETAILS { type: bookmarkConstants.CHANGE_DETAILS, payload: { bookmarkId: string, name: string, url: string } }
 
-export interface CREATE_SUCCESS { type: bookmarkSucessConstants.CREATE, payload: object }
+export interface CREATE_SUCCESS { type: bookmarkSucessConstants.CREATE, payload: { bookmark: object } }
 export interface READ_SUCCESS { type: bookmarkSucessConstants.READ, payload: object }
 export interface DELETE_SUCCESS { type: bookmarkSucessConstants.DELETE, payload: object }
 export interface PATCH_SUCCESS { type: bookmarkSucessConstants.PATCH, payload: object }

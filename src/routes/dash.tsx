@@ -1,6 +1,6 @@
-import { FunctionComponent, useCallback, useEffect, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Favourites, Folders, Logout, Main, SearchBox } from '../components';
 import { useGetBookmark, useGetFolder, useGetUser } from '../redux';
 import { IRootState } from '../redux/reducers';
@@ -8,29 +8,22 @@ import { DashContainer, LeftPane, LoadingGif, Logo, LogoTitle } from '../styles'
 
 type Props = {};
 const Dash: FunctionComponent<Props> = (props) => {
-    const params = useParams();
     const [loading, setLoading] = useState(true);
     const state = useSelector((state: IRootState) => state);
     const [getUser] = useGetUser();
     const [getBookmark] = useGetBookmark();
     const [getFolder] = useGetFolder();
-    const fetchData = useCallback(
-        (params: { folderId?: string }) => {
-            setLoading(true);
-            getUser();
-            getBookmark(params.folderId);
-            getFolder(params.folderId);
-        },
-        [getUser, getBookmark, getFolder]
-    );
 
     useEffect(() => {
-        console.log(params, 'params');
-        fetchData({ folderId: params.id });
-    }, [fetchData, params]);
+        setLoading(true);
+        getUser();
+        getBookmark();
+        getFolder();
+    }, [getUser, getBookmark, getFolder]);
+
     useEffect(() => {
         if (!state.auth.isLoading && !state.bookmark.isLoading && !state.folder.isLoading) {
-            console.log('final', state);
+            console.log('final');
             setLoading(false);
         }
     }, [state]);
