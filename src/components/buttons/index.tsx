@@ -54,18 +54,15 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({ folder }) => {
         <div>
             <ButtonBase
                 onClick={() => {
-                    console.log('id for folder: ', folder.id);
                     getChildren(folder.id!);
                     setRotate(true);
-                }}
-            >
+                }}>
                 <Icon alt="fav" src={'/assets/icons/folderOptions.png'} style={{ transform: rotate ? 'rotate(90deg)' : undefined }} />
             </ButtonBase>
             <ButtonBase
                 onClick={() => {
                     navigate(`/dash/${folder.id}`);
-                }}
-            >
+                }}>
                 <Icon alt="fav" src={'/assets/icons/Folder.png'} />
                 {folder.name}
             </ButtonBase>
@@ -83,8 +80,7 @@ export const FolderInnerButton: FunctionComponent<IfolderProps> = ({ folder }) =
             <ButtonBase
                 onClick={() => {
                     navigate(`/dash/${folder.id}`);
-                }}
-            >
+                }}>
                 <Icon alt="fav" src={'/assets/icons/FolderEmpty.png'} />
                 {folder.name}
             </ButtonBase>

@@ -49,16 +49,14 @@ const DropDownMenu: React.FunctionComponent<IMenuProps> = ({
                         width: '15ch',
                         borderRadius: 20
                     }
-                }}
-            >
+                }}>
                 {options.map((option) => (
                     <MenuItem
                         key={option.value}
                         onClick={() => {
                             option.handleClick();
                             handleClose();
-                        }}
-                    >
+                        }}>
                         {option.value}
                     </MenuItem>
                 ))}

@@ -16,16 +16,14 @@ const MiddlePart: FunctionComponent<any> = () => {
                         checked={typeToggleChecked}
                         onClick={() => {
                             setTypeToggleChecked(!typeToggleChecked);
-                        }}
-                    >
+                        }}>
                         <img src={'/assets/icons/uis_apps.png'} alt="h" />
                     </ToggleButton>
                     <ToggleButton
                         checked={!typeToggleChecked}
                         onClick={() => {
                             setTypeToggleChecked(!typeToggleChecked);
-                        }}
-                    >
+                        }}>
                         <img src={'/assets/icons/burger.png'} alt="h" />
                     </ToggleButton>
                 </Toggle>

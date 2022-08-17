@@ -1,15 +1,14 @@
-
-import { styled, TextField } from "@mui/material";
-import { ErrorMessage } from "formik";
+import { styled, TextField } from '@mui/material';
+import { ErrorMessage } from 'formik';
 
 export const InputFieldRounded = styled(TextField)({
     margin: 5,
     width: '30vw',
     borderRadius: 20,
     '& .MuiOutlinedInput-root': {
-        borderRadius: 20,
+        borderRadius: 20
     }
-})
+});
 export const InputFieldWhite = styled(TextField)(({ theme }) => ({
     margin: 5,
     backgroundColor: theme.palette.primary.dark,
@@ -22,15 +21,14 @@ export const InputFieldWhite = styled(TextField)(({ theme }) => ({
     },
     borderRadius: 20,
     '& .MuiOutlinedInput-root': {
-        borderRadius: 20,
+        borderRadius: 20
     }
-}))
+}));
 
 export const ErrorMessageCust = styled(ErrorMessage)({
     color: 'red',
     fontSize: 10
-})
-
+});
 
 interface StyledSearchProps {
     width: string;
@@ -42,6 +40,6 @@ export const StyledTextField = styled(TextField)<StyledSearchProps>((props) => (
     margin: 5,
     borderRadius: 20,
     '& .MuiOutlinedInput-root': {
-        borderRadius: 20,
+        borderRadius: 20
     }
-}))
+}));

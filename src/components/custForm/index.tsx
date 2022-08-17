@@ -73,8 +73,7 @@ export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
                 onSubmit(values);
                 setLoading(true);
             }}
-            validationSchema={RegisterValidation}
-        >
+            validationSchema={RegisterValidation}>
             {({ values }) => (
                 <Form2>
                     <Field required={true} name="Name" placeholder="Name" component={inputField} />
@@ -132,8 +131,7 @@ export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
                 onSubmit(values);
                 setLoading(true);
             }}
-            validationSchema={LoginValidation}
-        >
+            validationSchema={LoginValidation}>
             {({ values }) => (
                 <Form2>
                     <Field name="email" placeholder="Email" type="email" required={true} component={inputField} />
@@ -182,8 +180,7 @@ export const BookmarkForm: FunctionComponent<BookmarkProps> = ({ onSubmit }) => 
                 onSubmit(values);
                 resetForm();
             }}
-            validationSchema={BookmarkValidation}
-        >
+            validationSchema={BookmarkValidation}>
             {({ values }) => (
                 <BookMarkFormStyled>
                     <Typography sx={{ color: 'white' }} variant="h4">
