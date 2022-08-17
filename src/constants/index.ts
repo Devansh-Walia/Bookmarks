@@ -4,17 +4,17 @@ export enum authConstants {
     SIGNIN = "SIGNIN",
     GETME = "GETME"
 }
-export enum authSucessConstants {
+export enum authSuccessConstants {
     LOGIN = "LOGIN_SUCCESS",
     LOGOUT = "LOGOUT_SUCCESS",
     SIGNIN = "SIGNIN_SUCCESS",
     GETME = "GETME_SUCCESS"
 }
-export enum authFaliureConstants {
-    LOGIN = "LOGIN_FALIURE",
-    LOGOUT = "LOGOUT_FALIURE",
-    SIGNIN = "SIGNIN_FALIURE",
-    GETME = "GETME_FALIURE"
+export enum authFailureConstants {
+    LOGIN = "LOGIN_FAILURE",
+    LOGOUT = "LOGOUT_FAILURE",
+    SIGNIN = "SIGNIN_FAILURE",
+    GETME = "GETME_FAILURE"
 }
 export enum bookmarkConstants {
     CREATE = "CREATE_BOOKMARK",
@@ -24,7 +24,7 @@ export enum bookmarkConstants {
     TOGGLE = "TOGGLE_BOOKMARK",
     CHANGE_DETAILS = "CHANGE_DETAILS_BOOKMARK"
 }
-export enum bookmarkSucessConstants {
+export enum bookmarkSuccessConstants {
     CREATE = "CREATE_SUCCESS_BOOKMARK",
     READ = "READ_SUCCESS_BOOKMARK",
     DELETE = "DELETE_SUCCESS_BOOKMARK",
@@ -32,29 +32,32 @@ export enum bookmarkSucessConstants {
     TOGGLE = "TOGGLE_SUCCESS_BOOKMARK",
     CHANGE_DETAILS = "CHANGE_DETAILS_SUCCESS_BOOKMARK"
 }
-export enum bookmarkFaliureConstants {
-    CREATE = "CREATE_FALIURE_BOOKMARK",
-    READ = "READ_FALIURE_BOOKMARK",
-    DELETE = "DELETE_FALIURE_BOOKMARK",
-    PATCH = "PATCH_FALIURE_BOOKMARK",
-    TOGGLE = "TOGGLE_FALIURE_BOOKMARK",
-    CHANGE_DETAILS = "CHANGE_DETAILS_FALIURE_BOOKMARK"
+export enum bookmarkFailureConstants {
+    CREATE = "CREATE_FAILURE_BOOKMARK",
+    READ = "READ_FAILURE_BOOKMARK",
+    DELETE = "DELETE_FAILURE_BOOKMARK",
+    PATCH = "PATCH_FAILURE_BOOKMARK",
+    TOGGLE = "TOGGLE_FAILURE_BOOKMARK",
+    CHANGE_DETAILS = "CHANGE_DETAILS_FAILURE_BOOKMARK"
 }
 export enum folderConstants {
     CREATE = "CREATE_FOLDER",
     READ = "READ_FOLDER",
+    READ_CHILDREN = "READ_FOLDER_CHILDREN",
     UPDATE = "UPDATE_FOLDER",
     DELETE = "DELETE_FOLDER",
 }
-export enum folderSucessConstants {
+export enum folderSuccessConstants {
     CREATE = "CREATE_SUCCESS_FOLDER",
     READ = "READ_SUCCESS_FOLDER",
+    READ_CHILDREN = "READ_FOLDER_CHILDREN_SUCCESS",
     UPDATE = "UPDATE_SUCCESS_FOLDER",
     DELETE = "DELETE_SUCCESS_FOLDER",
 }
-export enum folderFaliureConstants {
-    CREATE = "CREATE_FALIURE_FOLDER",
-    READ = "READ_FALIURE_FOLDER",
-    UPDATE = "UPDATE_FALIURE_FOLDER",
-    DELETE = "DELETE_FALIURE_FOLDER",
+export enum folderFailureConstants {
+    CREATE = "CREATE_FAILURE_FOLDER",
+    READ = "READ_FAILURE_FOLDER",
+    READ_CHILDREN = "READ_FOLDER_CHILDREN_FAILURE",
+    UPDATE = "UPDATE_FAILURE_FOLDER",
+    DELETE = "DELETE_FAILURE_FOLDER",
 }

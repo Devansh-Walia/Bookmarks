@@ -1,7 +1,10 @@
-import { ButtonBase } from '@mui/material';
-import { FunctionComponent } from 'react';
+import { ButtonBase, Box } from '@mui/material';
+import { FunctionComponent, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useGetChildren } from '../../redux';
 import { useLogout } from '../../redux/hooks/AuthHooks';
+import { IRootState } from '../../redux/reducers';
 import { AddLinkStyle, Icon, StyledButton2, StyledButtonGiant } from '../../styles';
 
 type Props = {};
@@ -29,33 +32,61 @@ export const Favourites: FunctionComponent<Props> = (props) => {
     );
 };
 export const AddLinkGiant: FunctionComponent<Props> = (props) => {
-    return <StyledButtonGiant variant="outlined">+ Add Link</StyledButtonGiant>;
+    return <StyledButtonGiant variant="outlined">+ Add Folder</StyledButtonGiant>;
 };
 export const AddLink: FunctionComponent<Props> = (props) => {
     return <AddLinkStyle variant="outlined">+ Add Link</AddLinkStyle>;
 };
 
 interface IfolderProps {
-    inner?: boolean;
-    name: string;
-    id: string;
+    folder: {
+        name?: string;
+        id?: string;
+        children?: Object[];
+    };
 }
-export const FolderButton: FunctionComponent<IfolderProps> = ({ inner = false, name, id }) => {
+export const FolderButton: FunctionComponent<IfolderProps> = ({ folder }) => {
+    const navigate = useNavigate();
+    const [getChildren] = useGetChildren();
+    const { isLoadingChildren, parentId } = useSelector((state: IRootState) => state.folder);
+    const [rotate, setRotate] = useState(parentId === folder.id);
+    return (
+        <div>
+            <ButtonBase
+                onClick={() => {
+                    console.log('id for folder: ', folder.id);
+                    getChildren(folder.id!);
+                    setRotate(true);
+                }}
+            >
+                <Icon alt="fav" src={'/assets/icons/folderOptions.png'} style={{ transform: rotate ? 'rotate(90deg)' : undefined }} />
+            </ButtonBase>
+            <ButtonBase
+                onClick={() => {
+                    navigate(`/dash/${folder.id}`);
+                }}
+            >
+                <Icon alt="fav" src={'/assets/icons/Folder.png'} />
+                {folder.name}
+            </ButtonBase>
+            {parentId === folder.id && (folder.children || isLoadingChildren) && (
+                <Box style={{ marginLeft: 30 }}>{isLoadingChildren ? '...loading' : folder.children!.map((child) => <FolderInnerButton folder={child} />)}</Box>
+            )}
+        </div>
+    );
+};
+
+export const FolderInnerButton: FunctionComponent<IfolderProps> = ({ folder }) => {
     const navigate = useNavigate();
     return (
         <div>
-            {!inner && (
-                <ButtonBase>
-                    <Icon alt="fav" src={'/assets/icons/folderOptions.png'} />
-                </ButtonBase>
-            )}
             <ButtonBase
                 onClick={() => {
-                    navigate(`/dash/${id}`);
+                    navigate(`/dash/${folder.id}`);
                 }}
             >
-                {!inner ? <Icon alt="fav" src={'/assets/icons/Folder.png'} /> : <Icon alt="fav" src={'/assets/icons/FolderEmpty.png'} />}
-                {name}
+                <Icon alt="fav" src={'/assets/icons/FolderEmpty.png'} />
+                {folder.name}
             </ButtonBase>
         </div>
     );

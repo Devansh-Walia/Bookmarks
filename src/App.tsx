@@ -10,11 +10,11 @@ const App: FunctionComponent<IAppProps> = (props) => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Navigate to="/dash" />} />
-                <Route path="/dash" element={getDataFromLocalStorage({ key: '@authToken' }) ? <Dash /> : <Login />}>
+                <Route path="dash" element={getDataFromLocalStorage({ key: '@authToken' }) ? <Dash /> : <Login />}>
                     <Route path=":id" element={getDataFromLocalStorage({ key: '@authToken' }) ? <Dash /> : <Login />} />
                 </Route>
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signin />} />
+                <Route path="login" element={<Login />} />
+                <Route path="signup" element={<Signin />} />
                 <Route path="*" element={<Navigate to="/dash" />} />
             </Routes>
         </BrowserRouter>

@@ -1,7 +1,7 @@
 import { folderConstants } from '../../../../constants';
 
 import { all, takeLatest, fork } from 'redux-saga/effects'
-import { CreateFolderWatcherFunction, DeleteFolderWatcherFunction, GetFolderWatcherFunction, RenameFolderWatcherFunction } from '../functions';
+import { CreateFolderWatcherFunction, DeleteFolderWatcherFunction, GetChildrenWatcherFunction, GetFolderWatcherFunction, RenameFolderWatcherFunction } from '../functions';
 
 function* CreateFolderWatcher() {
     yield takeLatest(folderConstants.CREATE, CreateFolderWatcherFunction)
@@ -15,9 +15,15 @@ function* RenameFolderWatcher() {
 function* GetFolderWatcher() {
     yield takeLatest(folderConstants.READ, GetFolderWatcherFunction)
 }
+function* GetChildrenWatcher() {
+    yield takeLatest(folderConstants.READ_CHILDREN, GetChildrenWatcherFunction)
+}
 
 export default function* folderSagas() {
     yield all([fork(CreateFolderWatcher),
-    fork(DeleteFolderWatcher), fork(GetFolderWatcher), fork(RenameFolderWatcher)]);
+    fork(DeleteFolderWatcher),
+    fork(GetFolderWatcher),
+    fork(GetChildrenWatcher),
+    fork(RenameFolderWatcher)]);
 }
 

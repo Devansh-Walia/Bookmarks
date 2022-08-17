@@ -1,56 +1,58 @@
 import { bookmarkActions } from "../../actions";
-import { bookmarkFaliureConstants, bookmarkSucessConstants } from '../../../constants'
+import { bookmarkConstants, bookmarkFailureConstants, bookmarkSuccessConstants } from '../../../constants'
 
 const initialState = {
     bookmarks: [],
     error: "",
-    isLoading: true
+    isLoading: false
 }
 const reducer = (state: any = initialState, action: bookmarkActions) => {
     switch (action.type) {
-        case bookmarkSucessConstants.CREATE:
-            console.log('bookmarkSucessConstants.CREATE')
+        case bookmarkSuccessConstants.CREATE:
+            console.log('bookmarkSuccessConstants.CREATE')
             return { ...state, error: "", bookmarks: [...state.bookmarks, action.payload.bookmark] };
 
-        case bookmarkFaliureConstants.CREATE:
-            console.log('bookmarkFaliureConstants.CREATE')
+        case bookmarkFailureConstants.CREATE:
+            console.log('bookmarkFailureConstants.CREATE')
             return { ...state, error: "failed to create bookmark" };
 
-        case bookmarkSucessConstants.DELETE:
-            console.log('bookmarkSucessConstants.DELETE')
+        case bookmarkSuccessConstants.DELETE:
+            console.log('bookmarkSuccessConstants.DELETE')
             return { error: "", bookmarks: action.payload };
 
-        case bookmarkFaliureConstants.DELETE:
-            console.log('bookmarkFaliureConstants.DELETE')
+        case bookmarkFailureConstants.DELETE:
+            console.log('bookmarkFailureConstants.DELETE')
             return { ...state, error: "failed to delete bookmark" };
 
-        case bookmarkSucessConstants.READ:
-            console.log('bookmarkSucessConstants.READ')
+        case bookmarkConstants.READ:
+            return { ...state, isLoading: true }
+        case bookmarkSuccessConstants.READ:
+            console.log('bookmarkSuccessConstants.READ')
             return { error: "", bookmarks: action.payload, isLoading: false };
 
-        case bookmarkFaliureConstants.READ:
-            console.log('bookmarkFaliureConstants.READ')
+        case bookmarkFailureConstants.READ:
+            console.log('bookmarkFailureConstants.READ')
             return { ...state, error: "failed to read bookmarks", isLoading: false };
 
-        case bookmarkSucessConstants.PATCH:
-            console.log('bookmarkSucessConstants.PATCH')
+        case bookmarkSuccessConstants.PATCH:
+            console.log('bookmarkSuccessConstants.PATCH')
             return { error: "", bookmarks: action.payload };
 
-        case bookmarkFaliureConstants.PATCH:
-            console.log('bookmarkFaliureConstants.PATCH')
+        case bookmarkFailureConstants.PATCH:
+            console.log('bookmarkFailureConstants.PATCH')
             return { ...state, error: "failed to.PATCH bookmarks" };
-        case bookmarkSucessConstants.TOGGLE:
-            console.log('bookmarkSucessConstants.TOGGLE')
+        case bookmarkSuccessConstants.TOGGLE:
+            console.log('bookmarkSuccessConstants.TOGGLE')
             return { error: "", bookmarks: action.payload };
 
-        case bookmarkFaliureConstants.TOGGLE:
-            console.log('bookmarkFaliureConstants.TOGGLE')
+        case bookmarkFailureConstants.TOGGLE:
+            console.log('bookmarkFailureConstants.TOGGLE')
             return { ...state, error: "failed to.TOGGLE bookmarks" };
-        case bookmarkSucessConstants.CHANGE_DETAILS:
-            console.log('bookmarkSucessConstants.CHANGE_DETAILS')
+        case bookmarkSuccessConstants.CHANGE_DETAILS:
+            console.log('bookmarkSuccessConstants.CHANGE_DETAILS')
             return { error: "", bookmarks: action.payload };
 
-        case bookmarkFaliureConstants.CHANGE_DETAILS:
+        case bookmarkFailureConstants.CHANGE_DETAILS:
             return { ...state, error: "failed to.CHANGE_DETAILS bookmarks" };
 
         default:

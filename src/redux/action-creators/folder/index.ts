@@ -24,3 +24,10 @@ export const renameFolderAction = (name: string, folderId: string) => {
         payload: { name, folderId }
     }
 }
+
+export const getChildrenAction = (folderId: string) => {
+    return {
+        type: folderConstants.READ_CHILDREN,
+        payload: folderId
+    }
+}

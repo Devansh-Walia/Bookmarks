@@ -111,7 +111,7 @@ export const CardContainer = styled(Box)({
 
     width: 248,
     height: 301,
-    padding: 20,
+    padding: 10,
 
     background: '#FFFFFF',
     boxShadow: '0px 6px 12px -6px rgba(24, 39, 75, 0.12), 0px 8px 24px -4px rgba(24, 39, 75, 0.08)',

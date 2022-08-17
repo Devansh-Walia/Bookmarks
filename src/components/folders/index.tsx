@@ -20,7 +20,7 @@ export const Folders: FunctionComponent<Props> = ({ folders }) => {
                 <AddLinkGiant />
             ) : (
                 folders.map((folder) => {
-                    return <FolderButton key={folder.id} id={folder.id!} name={folder.name!} />;
+                    return <FolderButton key={folder.id} folder={folder!} />;
                 })
             )}
         </FolderDiv>

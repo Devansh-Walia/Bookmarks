@@ -1,5 +1,5 @@
 
-import { authConstants, authFaliureConstants, authSucessConstants } from '../../../constants';
+import { authConstants, authFailureConstants, authSuccessConstants } from '../../../constants';
 export interface loginProps { email: string; password: string; }
 
 interface LOGIN { type: authConstants.LOGIN, payload: loginProps }
@@ -7,19 +7,19 @@ interface LOGOUT { type: authConstants.LOGOUT }
 interface SIGNIN { type: authConstants.SIGNIN, payload: object }
 interface GETME { type: authConstants.GETME, payload: object }
 
-interface LOGIN_SUCCESS { type: authSucessConstants.LOGIN, payload: loginProps }
-interface LOGOUT_SUCCESS { type: authSucessConstants.LOGOUT }
-interface SIGNIN_SUCCESS { type: authSucessConstants.SIGNIN, payload: object }
-interface GETME_SUCCESS { type: authSucessConstants.GETME, payload: object }
+interface LOGIN_SUCCESS { type: authSuccessConstants.LOGIN, payload: loginProps }
+interface LOGOUT_SUCCESS { type: authSuccessConstants.LOGOUT }
+interface SIGNIN_SUCCESS { type: authSuccessConstants.SIGNIN, payload: object }
+interface GETME_SUCCESS { type: authSuccessConstants.GETME, payload: object }
 
-interface LOGIN_FALIURE { type: authFaliureConstants.LOGIN, payload: loginProps }
-interface LOGOUT_FALIURE { type: authFaliureConstants.LOGOUT }
-interface SIGNIN_FALIURE { type: authFaliureConstants.SIGNIN, payload: object }
-interface GETME_FALIURE { type: authFaliureConstants.GETME, payload: object }
+interface LOGIN_FAILURE { type: authFailureConstants.LOGIN, payload: loginProps }
+interface LOGOUT_FAILURE { type: authFailureConstants.LOGOUT }
+interface SIGNIN_FAILURE { type: authFailureConstants.SIGNIN, payload: object }
+interface GETME_FAILURE { type: authFailureConstants.GETME, payload: object }
 
 
 export type authActions = LOGIN | LOGOUT | SIGNIN | GETME
-    | LOGIN_FALIURE | LOGIN_SUCCESS
-    | LOGOUT_FALIURE | LOGOUT_SUCCESS
-    | SIGNIN_FALIURE | SIGNIN_SUCCESS
-    | GETME_FALIURE | GETME_SUCCESS;
+    | LOGIN_FAILURE | LOGIN_SUCCESS
+    | LOGOUT_FAILURE | LOGOUT_SUCCESS
+    | SIGNIN_FAILURE | SIGNIN_SUCCESS
+    | GETME_FAILURE | GETME_SUCCESS;
