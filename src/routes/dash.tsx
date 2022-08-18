@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Favourites, Folders, Logout, Main, SearchBox } from '../components';
 import { useGetBookmark, useGetFolder, useGetUser } from '../redux';
 import { IRootState } from '../redux/reducers';
@@ -9,15 +9,16 @@ import { DashContainer, LeftPane, LoadingGif, Logo, LogoTitle } from '../styles'
 type Props = {};
 const Dash: FunctionComponent<Props> = (props) => {
     const state = useSelector((state: IRootState) => state);
+    const params = useParams();
     const [getUser] = useGetUser();
     const [getBookmark] = useGetBookmark();
     const [getFolder] = useGetFolder();
-
     useEffect(() => {
+        console.log('Location changed - ', params);
+        getBookmark(params.hasOwnProperty('id') ? params.id : undefined);
+        getFolder(params.hasOwnProperty('id') ? params.id : undefined);
         getUser();
-        getBookmark();
-        getFolder();
-    }, [getUser, getBookmark, getFolder]);
+    }, [params, getBookmark, getFolder, getUser]);
 
     return (
         <DashContainer>

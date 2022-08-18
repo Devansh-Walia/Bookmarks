@@ -5,13 +5,14 @@ const axios = require('axios');
 interface createProps {
     name?: string;
     url: string;
+    folderId?: string;
 }
 export const createBookmark = async (props: createProps): Promise<any> => {
     const data = JSON.stringify(props);
 
     const temp_config = {
         method: 'post',
-        url: `${process.env.REACT_APP_API_URL}/bookmark`,
+        url: props.folderId ? `${process.env.REACT_APP_API_URL}/bookmark?folderId=${props.folderId}` : `${process.env.REACT_APP_API_URL}/bookmark`,
         data: data
     };
     const config = setHeaders(temp_config);
@@ -47,6 +48,7 @@ export const getBookmark = async (props: getBookmarkProps): Promise<any> => {
         data: data
     };
     const config = setOnlyAuth(temp_config);
+
     return await axios(config);
 };
 

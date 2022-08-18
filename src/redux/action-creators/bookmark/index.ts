@@ -1,9 +1,9 @@
 import { bookmarkConstants } from '../../../constants';
 
-export const createBookmarkAction = (name: string, url: string,) => {
+export const createBookmarkAction = (url: string, folderId?: string, name?: string,) => {
     return {
         type: bookmarkConstants.CREATE,
-        payload: { name, url }
+        payload: { name, url, folderId }
     }
 }
 export const DeleteBookmarkAction = (bookmarkId: string) => {

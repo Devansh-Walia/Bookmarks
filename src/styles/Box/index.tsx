@@ -97,11 +97,13 @@ export const MainContainer = styled(Box)({
 });
 export const Cards = styled(Box)({
     flex: 2,
-    padding: 20,
+    padding: 40,
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 20
+    gap: 30,
+    alignItems: 'center',
+    justifyContent: 'space-between'
 });
 export const CardContainer = styled(Box)({
     position: 'relative',
@@ -130,4 +132,14 @@ export const Profile = styled('div')({
     gap: 10,
     height: 45,
     padding: 2
+});
+
+export const NoBookmarks = styled('div')({
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    lineHeight: '1px',
+    margin: 'auto',
+    marginTop: '5%'
 });

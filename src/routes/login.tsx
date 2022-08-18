@@ -22,7 +22,7 @@ const Login: FunctionComponent<Props> = (props) => {
     };
     const auth = useSelector((state: IRootState) => state.auth);
     if (auth.isLoggedin && getDataFromLocalStorage({ key: '@authToken' })) {
-        return <Navigate replace to="/" />;
+        return <Navigate replace to="/dash" />;
     }
     return (
         <AuthContainer>

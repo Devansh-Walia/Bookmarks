@@ -5,10 +5,13 @@ import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const ITEM_HEIGHT = 48;
-
+interface IOptions {
+    value: string;
+    handleClick: () => void;
+}
 interface IMenuProps {
-    id?: string;
-    options?: { value: string; handleClick: () => void }[];
+    bookmarkId?: string;
+    options?: IOptions[];
 }
 
 const DropDownMenu: React.FunctionComponent<IMenuProps> = ({

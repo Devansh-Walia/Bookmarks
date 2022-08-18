@@ -13,45 +13,35 @@ const initialState = {
 const reducer = (state: any = initialState, action: folderActions) => {
     switch (action.type) {
         case folderSuccessConstants.CREATE:
-            console.log('folderSuccessConstants.CREATE')
             return { error: "", folders: action.payload };
 
         case folderFailureConstants.CREATE:
-            console.log('folderFailureConstants.CREATE')
             return { ...state, error: "failed to create folder" };
 
         case folderSuccessConstants.DELETE:
-            console.log('folderSuccessConstants.DELETE')
             return { error: "", folders: action.payload };
         case folderFailureConstants.DELETE:
-            console.log('folderFailureConstants.DELETE')
             return { ...state, error: "failed to delete folder" };
 
         case folderConstants.READ:
             return { ...state, isLoading: true }
         case folderSuccessConstants.READ:
-            console.log('folderSuccessConstants.READ')
             return { error: "", folders: action.payload, isLoading: false };
         case folderFailureConstants.READ:
-            console.log('folderFailureConstants.READ')
             return { ...state, error: "failed to read folders", isLoading: false };
 
         case folderConstants.READ_CHILDREN:
             return { ...state, isLoadingChildren: true, parentId: action.payload }
         case folderSuccessConstants.READ_CHILDREN:
-            console.log('folderSuccessConstants.READ_children')
             const UpdatedFolders = state.folders.map((item: FolderType) =>
                 item.id === state.parentId ? { ...item, children: action.payload } : item)
             return { ...state, isLoadingChildren: false, folders: UpdatedFolders };
         case folderFailureConstants.READ_CHILDREN:
-            console.log('folderFailureConstants.READ_children')
             return { ...state, error: "failed to read folder children", isLoadingChildren: false };
 
         case folderSuccessConstants.UPDATE:
-            console.log('folderSuccessConstants.UPDATE')
             return { error: "", folders: action.payload };
         case folderFailureConstants.UPDATE:
-            console.log('folderFailureConstants.UPDATE')
             return { ...state, error: "failed to update folders" };
 
         default:

@@ -26,7 +26,7 @@ const Signin: FunctionComponent<Props> = (props) => {
     if (getDataFromLocalStorage({ key: '@CanLogin' })) {
         console.log(auth);
 
-        return <Navigate replace to="/" />;
+        return <Navigate replace to="/login" />;
     }
     return (
         <AuthContainer>

@@ -33,7 +33,16 @@ export const Card: FunctionComponent<ICardProps> = ({ bookmark }) => {
             </a>
             <MiddleText>
                 <TitleCardText variant="h6">{name}</TitleCardText>
-                <CardMenu />
+                <CardMenu
+                    options={[
+                        {
+                            value: 'delete',
+                            handleClick: () => {
+                                console.log('delete', bookmark.id);
+                            }
+                        }
+                    ]}
+                />
             </MiddleText>
             <div>
                 <Typography className="bookmark-card-bottom-text">{description}</Typography>

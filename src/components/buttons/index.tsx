@@ -67,7 +67,7 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({ folder }) => {
                 {folder.name}
             </ButtonBase>
             {parentId === folder.id && (folder.children || isLoadingChildren) && (
-                <Box style={{ marginLeft: 30 }}>{isLoadingChildren ? '...loading' : folder.children!.map((child) => <FolderInnerButton folder={child} />)}</Box>
+                <Box style={{ marginLeft: 30 }}>{isLoadingChildren ? '...loading' : folder.children!.map((child, index) => <FolderInnerButton key={index} folder={child} />)}</Box>
             )}
         </div>
     );

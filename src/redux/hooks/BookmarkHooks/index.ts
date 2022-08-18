@@ -4,12 +4,13 @@ import { createBookmarkAction, getBookmarkAction } from "../../action-creators/b
 
 interface AddPayload {
     url: string;
-    folder: string;
+    folderId?: string;
+    name?: string;
 }
 export const useAddBookmark = () => {
     const dispatch = useDispatch();
     const addBookmark = useCallback(
-        (payload: AddPayload) => dispatch(createBookmarkAction(payload.folder, payload.url)),
+        (payload: AddPayload) => dispatch(createBookmarkAction(payload.url, payload.folderId)),
         [dispatch]);
 
     return [addBookmark];
