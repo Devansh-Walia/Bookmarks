@@ -18,6 +18,7 @@ const Dash: FunctionComponent = () => {
   const [getUser] = useGetUser();
   const [getBookmark] = useGetBookmark();
   const [getFolder] = useGetFolder();
+
   useEffect(() => {
     console.log('changed');
     getBookmark(params.hasOwnProperty('id') ? params.id : undefined);

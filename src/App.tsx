@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-
 import { Dash, Login, Signin } from './routes';
 import { getDataFromLocalStorage } from './services';
 
@@ -15,7 +14,7 @@ const App: FunctionComponent = () => {
             getDataFromLocalStorage({ key: '@authToken' }) ? (
               <Dash />
             ) : (
-              <Login />
+              <Navigate replace to="/login" />
             )
           }>
           <Route
@@ -24,7 +23,7 @@ const App: FunctionComponent = () => {
               getDataFromLocalStorage({ key: '@authToken' }) ? (
                 <Dash />
               ) : (
-                <Login />
+                <Navigate replace to="/login" />
               )
             }
           />
