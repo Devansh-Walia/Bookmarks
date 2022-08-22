@@ -14,11 +14,9 @@ export function* CreateBookmarkWatcherFunction(action: CREATE): Generator<any> {
 }
 export function* DeleteBookmarkWatcherFunction(action: DELETE): Generator<any> {
     try {
-        console.log(action)
         const response: any = yield call(DeleteBookmark, { bookmarkId: action.payload.bookmarkId });
-        console.log(response);
 
-        yield put({ type: bookmarkSuccessConstants.DELETE, payload: response });
+        yield put({ type: bookmarkSuccessConstants.DELETE, payload: { ...response.data, id: action.payload.bookmarkId } });
     }
     catch (e) {
         yield put({ type: bookmarkFailureConstants.DELETE })

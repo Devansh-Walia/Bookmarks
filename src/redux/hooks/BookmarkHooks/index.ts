@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { createBookmarkAction, getBookmarkAction } from "../../action-creators/bookmark";
+
+import { createBookmarkAction, deleteBookmarkAction, getBookmarkAction } from "../../action-creators/bookmark";
 
 interface AddPayload {
     url: string;
@@ -9,6 +10,7 @@ interface AddPayload {
 }
 export const useAddBookmark = () => {
     const dispatch = useDispatch();
+
     const addBookmark = useCallback(
         (payload: AddPayload) => dispatch(createBookmarkAction(payload.url, payload.folderId)),
         [dispatch]);
@@ -18,9 +20,20 @@ export const useAddBookmark = () => {
 
 export const useGetBookmark = () => {
     const dispatch = useDispatch();
+
     const getBookmark = useCallback(
         (folderId?: string) => dispatch(getBookmarkAction(folderId)),
         [dispatch]);
 
     return [getBookmark];
+}
+
+export const useDeleteBookmark = () => {
+    const dispatch = useDispatch();
+
+    const deleteBookmark = useCallback(
+        (bookmarkId: string) => dispatch(deleteBookmarkAction(bookmarkId)),
+        [dispatch])
+
+    return [deleteBookmark];
 }

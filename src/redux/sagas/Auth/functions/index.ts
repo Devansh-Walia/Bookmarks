@@ -1,12 +1,18 @@
-import { authFailureConstants, authSuccessConstants } from '../../../../constants';
+import { authConstants, authFailureConstants, authSuccessConstants } from '../../../../constants';
 import { call, put } from 'redux-saga/effects'
 import { addDataToLocalStorage, getmeRequest, logInRequest, logoutRequest, signInRequest } from '../../../../services';
 
 
-export function* LoginWatcherFunction(action: any): Generator<any> {
+export function* LoginWatcherFunction(action: {
+    type: authConstants.LOGIN,
+    payload: { email: string, password: string, navigate: any }
+}): Generator<any> {
     try {
         const response: any = yield call(logInRequest, { email: action.payload.email, password: action.payload.password });
         addDataToLocalStorage({ key: "@authToken", value: response.data.token });
+
+        action.payload.navigate('/dash')
+
         yield put({ type: authSuccessConstants.LOGIN });
     }
     catch (e) {

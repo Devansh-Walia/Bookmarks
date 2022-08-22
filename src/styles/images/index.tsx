@@ -41,3 +41,5 @@ export const CardImage = styled('img')({
     filter: 'drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.06)) drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.04))',
     borderRadius: 16
 });
+
+export const ProfileIcon = styled(Icon)({ transform: 'rotate(90deg)' });

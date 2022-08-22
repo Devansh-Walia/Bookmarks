@@ -20,7 +20,6 @@ interface signInRequestResponseProps {
         token: string;
     }
 }
-
 export const signInRequest = async (props: signInRequestProps): Promise<signInRequestResponseProps> => {
     const data = JSON.stringify({
         "name": props.userName,
@@ -54,7 +53,6 @@ interface logInRequestResponseProps {
         token: string;
     }
 }
-
 export const logInRequest = async ({ email, password }: logInRequestProps): Promise<logInRequestResponseProps> => {
     const data = JSON.stringify({
         "email": email,
@@ -71,8 +69,6 @@ export const logInRequest = async ({ email, password }: logInRequestProps): Prom
 
 export const logoutRequest = async () => {
     removeDataFromLocalStorage({ key: "@authToken" });
-    console.log("delete");
-
 }
 
 export const getmeRequest = async () => {

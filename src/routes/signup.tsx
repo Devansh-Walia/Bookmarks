@@ -4,11 +4,9 @@ import { Navigate } from 'react-router-dom';
 import { CustForm } from '../components';
 import AuthContainer from '../containers/AuthContainer';
 import { useSignin } from '../redux/hooks/AuthHooks';
-import { IRootState } from '../redux/reducers';
 import { getDataFromLocalStorage } from '../services';
+import { authSelector } from '../services/SelectorFunctions';
 import { WelcomeMessage, Headding, HeaddingBold, CustomBoxWhiteSmall, CustomBox, Saly } from '../styles';
-
-type Props = {};
 
 interface onSubmitValues {
     Name: string;
@@ -16,13 +14,13 @@ interface onSubmitValues {
     password: string;
 }
 
-const Signin: FunctionComponent<Props> = (props) => {
+const Signin: FunctionComponent = () => {
     const [signingIn] = useSignin();
 
     const onSubmit = ({ Name, email, password }: onSubmitValues) => {
         signingIn({ userName: Name, email: email, password: password });
     };
-    const auth = useSelector((state: IRootState) => state.auth);
+    const auth = useSelector(authSelector);
     if (getDataFromLocalStorage({ key: '@CanLogin' })) {
         console.log(auth);
 
