@@ -12,7 +12,7 @@ function* logoutWatcher() {
 }
 
 function* signinWatcher() {
-    yield takeLatest(authConstants.SIGNIN, signinWatcherFunction)
+    yield takeLatest(authConstants.SIGNUP, signinWatcherFunction)
 }
 function* getmeWatcher() {
     yield takeLatest(authConstants.GETME, getmeWatcherFunction)

@@ -1,14 +1,16 @@
-import { Checkbox, styled, TextField } from '@mui/material';
+import { Checkbox, Input, styled, TextField } from '@mui/material';
 import { ErrorMessage } from 'formik';
 
-export const InputFieldRounded = styled(TextField)({
-  margin: 5,
-  width: '30vw',
-  borderRadius: 20,
-  '& .MuiOutlinedInput-root': {
-    borderRadius: 20
-  }
-});
+export const InputFieldRounded = styled(Input)`
+  width: 350px;
+  height: 50px;
+  border: 1px solid #f1f1fa;
+  border-radius: 12px;
+  padding-left: 20px;
+  color: #91919f;
+  margin-top: 40px;
+`;
+
 export const InputFieldWhite = styled(TextField)(({ theme }) => ({
   margin: 5,
   backgroundColor: theme.palette.primary.dark,

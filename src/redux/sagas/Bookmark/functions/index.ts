@@ -2,6 +2,7 @@ import { bookmarkFailureConstants, bookmarkSuccessConstants } from '../../../../
 import { call, put } from 'redux-saga/effects'
 import { changeDetailsBookmark, createBookmark, DeleteBookmark, getBookmark, patchBookmark, toggleFavBookmark } from '../../../../services';
 import { CHANGE_DETAILS, CREATE, DELETE, PATCH, READ, TOGGLE } from '../../../actions/bookmark'
+import { bookamrksType, bookmarkType } from '../../../../constants/types';
 
 export function* CreateBookmarkWatcherFunction(action: CREATE): Generator<any> {
     try {
@@ -25,7 +26,13 @@ export function* DeleteBookmarkWatcherFunction(action: DELETE): Generator<any> {
 export function* GetBookmarkWatcherFunction(action: READ): Generator<any> {
     try {
         const response: any = yield call(getBookmark, { folderId: action.payload.folderId });
-        yield put({ type: bookmarkSuccessConstants.READ, payload: response.data });
+        const bookmarks: bookamrksType = {};
+        const rootBookmarkIds: string[] = [];
+        response.data.forEach((element: bookmarkType) => {
+            rootBookmarkIds.push(element.id);
+            bookmarks[element.id] = element;
+        });
+        yield put({ type: bookmarkSuccessConstants.READ, payload: { bookmarks, rootBookmarkIds, currentFolder: action.payload.folderId || "root" } });
     }
     catch (e) {
         yield put({ type: bookmarkFailureConstants.READ })

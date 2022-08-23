@@ -1,12 +1,19 @@
 
 import { bookmarkConstants, bookmarkFailureConstants, bookmarkSuccessConstants } from '../../../constants';
+import { bookamrksType } from '../../../constants/types';
 
 export interface CREATE { type: bookmarkConstants.CREATE, payload: { name: string, url: string } }
 export interface CREATE_SUCCESS { type: bookmarkSuccessConstants.CREATE, payload: { bookmark: object } }
 export interface CREATE_FAILURE { type: bookmarkFailureConstants.CREATE, payload: object }
 
 export interface READ { type: bookmarkConstants.READ, payload: { folderId: string } }
-export interface READ_SUCCESS { type: bookmarkSuccessConstants.READ, payload: object }
+export interface READ_SUCCESS {
+    type: bookmarkSuccessConstants.READ, payload: {
+        bookmarks: bookamrksType,
+        rootBookmarkIds: string[],
+        currentFolder: string
+    }
+}
 export interface READ_FAILURE { type: bookmarkFailureConstants.READ, payload: object }
 
 export interface DELETE { type: bookmarkConstants.DELETE, payload: { bookmarkId: string } }

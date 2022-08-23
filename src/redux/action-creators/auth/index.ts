@@ -14,7 +14,7 @@ export const logout = () => {
 
 export const signin = (userName: string, email: string, password: string) => {
     return {
-        type: authConstants.SIGNIN,
+        type: authConstants.SIGNUP,
         payload: { userName, password, email }
     }
 }

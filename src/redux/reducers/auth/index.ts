@@ -15,9 +15,9 @@ const reducer = (state: any = initialState, action: authActions) => {
         case authFailureConstants.LOGIN:
             return { ...state, error: "Log in faliure, check email or password" };
 
-        case authSuccessConstants.SIGNIN:
-            return { ...state, isSignedin: true };
-        case authFailureConstants.SIGNIN:
+        case authSuccessConstants.SIGNUP:
+            return { ...state, isSignedin: true, LoginProps: { email: action.payload.email } };
+        case authFailureConstants.SIGNUP:
             return { ...state, error: "Sign up faliure, user already exists with the email" };
 
         case authSuccessConstants.LOGOUT:

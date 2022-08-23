@@ -63,9 +63,8 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({
   folder,
   inner = false
 }) => {
-  const navigate = useNavigate();
-  const { isLoadingChildren, parentId } = useSelector(folderSelector);
-  const [rotate, setRotate] = useState(parentId === folder.id);
+  const { isLoadingChildren } = useSelector(folderSelector);
+  const [rotate, setRotate] = useState(false);
 
   const [getChildren] = useGetChildren();
 
@@ -91,7 +90,7 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({
           </ButtonBase>
           <ButtonBase
             onClick={() => {
-              navigate(`/dash/${folder.id}`);
+              console.log(folder.id);
             }}>
             <Icon
               alt=""
@@ -127,15 +126,11 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({
           ]}
         />
       </FolderButtonsAndMenuDiv>
-      {parentId === folder.id && (folder.children || isLoadingChildren) && (
+      {
         <InnerFolderContainer>
-          {isLoadingChildren
-            ? '...loading'
-            : folder.children!.map((child, index) => (
-                <FolderButton key={index} folder={child} inner={true} />
-              ))}
+          {isLoadingChildren ? '...loading' : ''}
         </InnerFolderContainer>
-      )}
+      }
     </Box>
   );
 };

@@ -1,19 +1,19 @@
 export enum authConstants {
     LOGIN = "LOGIN",
     LOGOUT = "LOGOUT",
-    SIGNIN = "SIGNIN",
+    SIGNUP = "SIGNUP",
     GETME = "GETME"
 }
 export enum authSuccessConstants {
     LOGIN = "LOGIN_SUCCESS",
     LOGOUT = "LOGOUT_SUCCESS",
-    SIGNIN = "SIGNIN_SUCCESS",
+    SIGNUP = "SIGNUP_SUCCESS",
     GETME = "GETME_SUCCESS"
 }
 export enum authFailureConstants {
     LOGIN = "LOGIN_FAILURE",
     LOGOUT = "LOGOUT_FAILURE",
-    SIGNIN = "SIGNIN_FAILURE",
+    SIGNUP = "SIGNUP_FAILURE",
     GETME = "GETME_FAILURE"
 }
 export enum bookmarkConstants {

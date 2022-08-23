@@ -10,11 +10,18 @@ import {
 
 export const inputField: FunctionComponent<FieldProps & TextFieldProps> = ({
   placeholder,
-  field
+  field,
+  type
 }) => {
   return (
     <>
-      <InputFieldRounded placeholder={placeholder} {...field} />
+      <InputFieldRounded
+        placeholder={placeholder}
+        {...field}
+        type={type}
+        disableUnderline
+        required
+      />
       <ErrorMessageCust name={field.name} component="div" />
     </>
   );

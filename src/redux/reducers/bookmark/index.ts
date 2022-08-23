@@ -26,7 +26,7 @@ const reducer = (state: any = initialState, action: bookmarkActions) => {
         case bookmarkConstants.READ:
             return { ...state, isLoading: true }
         case bookmarkSuccessConstants.READ:
-            return { error: "", bookmarks: action.payload, isLoading: false };
+            return { error: "", ...action.payload, isLoading: false };
 
         case bookmarkFailureConstants.READ:
             return { ...state, error: "failed to read bookmarks", isLoading: false };

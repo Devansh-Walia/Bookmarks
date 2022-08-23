@@ -10,9 +10,6 @@ export function* LoginWatcherFunction(action: {
     try {
         const response: any = yield call(logInRequest, { email: action.payload.email, password: action.payload.password });
         addDataToLocalStorage({ key: "@authToken", value: response.data.token });
-
-        action.payload.navigate('/dash')
-
         yield put({ type: authSuccessConstants.LOGIN });
     }
     catch (e) {
@@ -30,10 +27,10 @@ export function* signinWatcherFunction(action: any): Generator<any> {
         yield call(signInRequest, { userName: action.payload.userName, email: action.payload.email, password: action.payload.password });
         addDataToLocalStorage({ key: "@Canlogin", value: true });
 
-        yield put({ type: authSuccessConstants.LOGIN });
+        yield put({ type: authSuccessConstants.SIGNUP, payload: { email: action.payload.email } });
     }
     catch (e) {
-        yield put({ type: authFailureConstants.LOGIN })
+        yield put({ type: authFailureConstants.SIGNUP })
     }
 }
 export function* getmeWatcherFunction(action: any): Generator<any> {

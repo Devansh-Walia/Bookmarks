@@ -1,5 +1,6 @@
 
 import { folderConstants, folderFailureConstants, folderSuccessConstants } from '../../../constants';
+import { foldersType } from '../../../constants/types';
 
 interface CREATE { type: folderConstants.CREATE, payload: object }
 interface CREATE_SUCCESS { type: folderSuccessConstants.CREATE, payload: object }
@@ -10,7 +11,7 @@ interface READ_SUCCESS { type: folderSuccessConstants.READ, payload: object }
 interface READ_FAILURE { type: folderFailureConstants.READ, payload: object }
 
 interface READ_CHILDREN { type: folderConstants.READ_CHILDREN, payload: object }
-interface READ_CHILDREN_SUCCESS { type: folderSuccessConstants.READ_CHILDREN, payload: object }
+interface READ_CHILDREN_SUCCESS { type: folderSuccessConstants.READ_CHILDREN, payload: { parentId: string, childFolders: foldersType, childFolderIds: string[] } }
 interface READ_CHILDREN_FAILURE { type: folderFailureConstants.READ_CHILDREN, payload: object }
 
 interface DELETE { type: folderConstants.DELETE, payload: object }

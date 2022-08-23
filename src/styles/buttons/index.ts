@@ -2,7 +2,10 @@ import { Button, styled } from "@mui/material";
 
 
 export const StyledButton = styled(Button)({
-    width: '30vw'
+    width: '350px',
+    height: '50px',
+    borderRadius: '12px',
+    marginTop: '40px',
 })
 export const SigninWithGoogle = styled(Button)({
     backgroundColor: 'white',

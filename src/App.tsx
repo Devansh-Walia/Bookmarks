@@ -1,35 +1,25 @@
 import { FunctionComponent } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { Dash, Login, Signin } from './routes';
+import { Dash, Login, SignUp } from './routes';
 import { getDataFromLocalStorage } from './services';
 
 const App: FunctionComponent = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/dash" />} />
         <Route
-          path="dash"
+          path="/"
           element={
             getDataFromLocalStorage({ key: '@authToken' }) ? (
-              <Dash />
+              <Navigate to="/dash" replace />
             ) : (
-              <Navigate replace to="/login" />
+              <Navigate to="/login" replace />
             )
-          }>
-          <Route
-            path=":id"
-            element={
-              getDataFromLocalStorage({ key: '@authToken' }) ? (
-                <Dash />
-              ) : (
-                <Navigate replace to="/login" />
-              )
-            }
-          />
-        </Route>
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signin />} />
+          }
+        />
+        <Route path="/dash" element={<Dash />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<Navigate to="/dash" />} />
       </Routes>
     </BrowserRouter>

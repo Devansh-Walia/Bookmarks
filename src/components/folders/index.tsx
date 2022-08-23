@@ -1,27 +1,19 @@
 import { FunctionComponent } from 'react';
+import { useSelector } from 'react-redux';
+import { folderSelector } from '../../services/SelectorFunctions';
 
 import { FoldersDiv } from '../../styles';
 import { AddLinkGiant, FolderButton } from '../buttons';
 
-interface FolderProps {
-  createdAt?: string;
-  deletedAt?: string;
-  id?: string;
-  name?: string;
-  updatedAt?: string;
-}
-type Props = {
-  folders: FolderProps[];
-};
-
-export const Folders: FunctionComponent<Props> = ({ folders }) => {
+export const Folders: FunctionComponent = () => {
+  const { folders, rootIds } = useSelector(folderSelector);
   return (
     <FoldersDiv>
-      {folders.length === 0 ? (
+      {rootIds.length === 0 ? (
         <AddLinkGiant />
       ) : (
-        folders.map((folder) => {
-          return <FolderButton key={folder.id} folder={folder!} />;
+        rootIds.map((id: string) => {
+          return <FolderButton key={id} folder={folders[id]} />;
         })
       )}
     </FoldersDiv>

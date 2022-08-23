@@ -1,7 +1,10 @@
 import { FunctionComponent } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useAddBookmark } from '../../redux/hooks/BookmarkHooks';
+import { IRootState } from '../../redux/reducers';
+import { stateSelector } from '../../services/SelectorFunctions';
 import {
   Cards,
   CustomBoxBlueSmall,
@@ -14,19 +17,18 @@ import { Card } from './Cards';
 import MiddleBar from './MiddlePart';
 import { ProfileSection } from './Profile';
 
-interface MainProps {
-  user: object;
-  bookmarks: object[];
-}
-
-export const Main: FunctionComponent<MainProps> = (props) => {
+export const Main: FunctionComponent = (props) => {
   const params = useParams();
-
+  const { auth, folder, bookmark }: IRootState = useSelector(stateSelector);
   const [addBookmark] = useAddBookmark();
+  const currentBookmarkIds =
+    bookmark.currentFolder === 'root'
+      ? bookmark.rootBookmarkIds
+      : folder.folders[bookmark.curretFolder].bookmarkIds;
 
   return (
     <MainContainer>
-      <ProfileSection user={props.user} />
+      <ProfileSection user={auth.user} />
       <CustomBoxBlueSmall>
         <BookmarkForm
           onSubmit={({ url }) => {
@@ -40,9 +42,9 @@ export const Main: FunctionComponent<MainProps> = (props) => {
       </CustomBoxBlueSmall>
       <MiddleBar />
       <Cards>
-        {props.bookmarks.length > 0 ? (
-          props.bookmarks.map((bookmark, index) => (
-            <Card key={index} bookmark={bookmark} />
+        {currentBookmarkIds.length > 0 ? (
+          currentBookmarkIds.map((id: string) => (
+            <Card key={id} bookmark={bookmark.bookmarks[id]} />
           ))
         ) : (
           <NoBookmarks>

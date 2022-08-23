@@ -1,7 +1,7 @@
 
 import { authConstants, authFailureConstants, authSuccessConstants } from '../../../constants';
+import { loginProps } from '../../../constants/types';
 
-export interface loginProps { email: string; password: string; }
 
 interface LOGIN { type: authConstants.LOGIN, payload: loginProps }
 interface LOGIN_SUCCESS { type: authSuccessConstants.LOGIN, payload: loginProps }
@@ -11,9 +11,9 @@ interface LOGOUT { type: authConstants.LOGOUT }
 interface LOGOUT_SUCCESS { type: authSuccessConstants.LOGOUT }
 interface LOGOUT_FAILURE { type: authFailureConstants.LOGOUT }
 
-interface SIGNIN { type: authConstants.SIGNIN, payload: object }
-interface SIGNIN_SUCCESS { type: authSuccessConstants.SIGNIN, payload: object }
-interface SIGNIN_FAILURE { type: authFailureConstants.SIGNIN, payload: object }
+interface SIGNUP { type: authConstants.SIGNUP, payload: object }
+interface SIGNUP_SUCCESS { type: authSuccessConstants.SIGNUP, payload: { email: string } }
+interface SIGNUP_FAILURE { type: authFailureConstants.SIGNUP, payload: object }
 
 interface GETME { type: authConstants.GETME, payload: object }
 interface GETME_SUCCESS { type: authSuccessConstants.GETME, payload: object }
@@ -22,8 +22,8 @@ interface GETME_FAILURE { type: authFailureConstants.GETME, payload: object }
 
 
 
-export type authActions = LOGIN | LOGOUT | SIGNIN | GETME
+export type authActions = LOGIN | LOGOUT | SIGNUP | GETME
     | LOGIN_FAILURE | LOGIN_SUCCESS
     | LOGOUT_FAILURE | LOGOUT_SUCCESS
-    | SIGNIN_FAILURE | SIGNIN_SUCCESS
+    | SIGNUP_FAILURE | SIGNUP_SUCCESS
     | GETME_FAILURE | GETME_SUCCESS;

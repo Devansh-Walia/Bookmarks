@@ -83,9 +83,9 @@ export const CustForm: FunctionComponent<Props> = ({ onSubmit }) => {
             component={inputField}
           />
           <Field
+            type="password"
             name="password"
             placeholder="Password"
-            type="password"
             required={true}
             component={inputField}
           />
@@ -141,9 +141,15 @@ interface Values2 {
 }
 interface Props2 {
   onSubmit: (values: Values2) => void;
+  LoginProps?: {
+    email: string;
+  };
 }
 
-export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
+export const CustForm2: FunctionComponent<Props2> = ({
+  onSubmit,
+  LoginProps
+}) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const auth = useSelector(authSelector);
@@ -163,7 +169,10 @@ export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
   }
   return (
     <Formik
-      initialValues={{ email: '', password: '' }}
+      initialValues={{
+        email: (LoginProps && LoginProps.email) || '',
+        password: ''
+      }}
       onSubmit={(values) => {
         onSubmit(values);
         setLoading(true);
@@ -179,9 +188,9 @@ export const CustForm2: FunctionComponent<Props2> = ({ onSubmit }) => {
             component={inputField}
           />
           <Field
+            type="password"
             name="password"
             placeholder="Password"
-            type="password"
             required={true}
             component={inputField}
           />

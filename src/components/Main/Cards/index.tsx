@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import { FunctionComponent } from 'react';
+import { ICardProps } from '../../../constants/types';
 import { useDeleteBookmark } from '../../../redux';
 
 import {
@@ -12,19 +13,6 @@ import {
 import CustomizedCheckbox from '../../checkboxes';
 import CardMenu from '../Menu';
 
-interface ICardProps {
-  bookmark: {
-    createdAt?: string;
-    deletedAt?: string;
-    description?: string;
-    id?: string;
-    imageUrl?: string;
-    isFavorite?: boolean;
-    name?: string;
-    updatedAt?: string;
-    url?: string;
-  };
-}
 export const Card: FunctionComponent<ICardProps> = ({ bookmark }) => {
   const [deleteBookmark] = useDeleteBookmark();
   let name = bookmark.name || bookmark.url;
