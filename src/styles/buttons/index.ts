@@ -4,7 +4,7 @@ import { Button, styled } from "@mui/material";
 export const StyledButton = styled(Button)({
     width: '350px',
     height: '50px',
-    borderRadius: '12px',
+    borderRadius: '16px',
     marginTop: '40px',
 })
 export const SigninWithGoogle = styled(Button)({
@@ -27,24 +27,24 @@ export const StyledButtonGiant = styled(Button)(({ theme }) => ({
     color: theme.palette.primary.main,
     width: '90%',
     height: 100,
-    borderRadius: 20,
+    borderRadius: 16,
     borderWidth: 2
 }))
 export const AddLinkStyle = styled(Button)(({ theme }) => ({
     color: theme.palette.primary.main,
-    borderRadius: 20,
+    borderRadius: 16,
     borderWidth: 2,
     height: 50
 }))
 export const FormButton = styled(Button)(({ theme }) => ({
     color: theme.palette.primary.main,
     backgroundColor: 'white',
-    borderRadius: 10,
+    borderRadius: 16,
     width: 100
 }))
 export const ModalButton = styled(Button)(({ theme }) => ({
     backgroundColor: theme.palette.primary.dark,
-    borderRadius: 10,
+    borderRadius: 16,
     padding: 12,
     flex: 1
 }))
@@ -59,7 +59,7 @@ export const ToggleButton = styled(Button)<toggleProps>(({ theme, checked }) => 
     minWidth: 0,
     height: checked ? 38 : 37,
     width: checked ? 38 : 50,
-    borderRadius: 13,
+    borderRadius: 16,
     "&:hover": {
         backgroundColor: !checked ? theme.palette.primary.main : "#dbd4d4",
     }

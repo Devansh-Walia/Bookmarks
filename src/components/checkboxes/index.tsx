@@ -13,9 +13,9 @@ function BpCheckbox(props: CheckboxProps & Props) {
       sx={{
         borderRadius: 20,
         backgroundColor: 'white',
-        padding: props.like === 'fav' ? 2 : 0,
+        padding: 2,
         top: props.like === 'fav' ? 20 : -10,
-        left: props.like === 'fav' ? 0 : -10,
+        left: -5,
         fill: props.like === 'fav' ? '#E01A1A' : 'primary'
       }}
       disableRipple

@@ -99,7 +99,7 @@ export const MainContainer = styled(Box)({
 });
 export const Cards = styled(Box)({
   flex: 2,
-  padding: 40,
+  padding: 10,
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -113,9 +113,9 @@ export const CardContainer = styled(Box)({
   flexDirection: 'column',
   alignItems: 'center',
 
-  width: 248,
-  height: 301,
-  padding: 10,
+  width: 258,
+  height: 321,
+  padding: 20,
 
   background: '#FFFFFF',
   boxShadow:
@@ -134,7 +134,8 @@ export const ProfileContainer = styled('div')({
   height: 50,
   width: '100%',
   display: 'flex',
-  justifyContent: 'flex-end'
+  justifyContent: 'flex-end',
+  marginBottom: 20
 });
 export const Profile = styled('div')({
   display: 'flex',

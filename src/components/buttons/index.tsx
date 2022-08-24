@@ -76,7 +76,7 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({
       sx={{
         minWidth: 'inherit',
         width: 'fit-content',
-        borderRadius: 20
+        borderRadius: 16
       }}>
       <FolderButtonsAndMenuDiv>
         <div style={{ flex: 1, minWidth: 100 }}>
