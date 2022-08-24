@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 
-import { createFolderAction, getChildrenAction, getFolderAction } from "../../action-creators/folder";
+import { createFolderAction, deleteFolderAction, getChildrenAction, getFolderAction } from "../../action-creators/folder";
 
 interface AddPayload {
     url: string;
@@ -26,6 +26,7 @@ export const useGetFolder = () => {
 
     return [getFolder];
 }
+
 export const useGetChildren = () => {
     const dispatch = useDispatch();
 
@@ -34,4 +35,11 @@ export const useGetChildren = () => {
         [dispatch]);
 
     return [getChildren];
+}
+export const useDeleteFolder = () => {
+    const dispatch = useDispatch();
+
+    const deleteFolder = useCallback((fid: string) => dispatch(deleteFolderAction(fid)), [dispatch])
+
+    return [deleteFolder];
 }

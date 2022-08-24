@@ -7,10 +7,10 @@ export const createFolderAction = (parentId: string, name: string) => {
     }
 }
 
-export const DeletefolderAction = (fid: string) => {
+export const deleteFolderAction = (fid: string) => {
     return {
         type: folderConstants.DELETE,
-        payload: { fid: fid }
+        payload: fid
     }
 }
 

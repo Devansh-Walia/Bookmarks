@@ -18,10 +18,10 @@ export function* CreateFolderWatcherFunction(action: any): Generator<any> {
 export function* DeleteFolderWatcherFunction(action: any): Generator<any> {
     try {
         console.log(action)
-        const response: any = yield call(DeleteFolder, { folderId: action.payload.folderId });
+        const response: any = yield call(DeleteFolder, { folderId: action.payload });
         console.log(response);
 
-        yield put({ type: folderSuccessConstants.DELETE });
+        yield put({ type: folderSuccessConstants.DELETE, payload: action.payload });
     }
     catch (e) {
         yield put({ type: folderFailureConstants.DELETE })

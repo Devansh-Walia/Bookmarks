@@ -9,18 +9,21 @@ const initialState = {
     currentFolder: "root"
 }
 const reducer = (state: any = initialState, action: bookmarkActions) => {
+    let newBookmarks, newRootBookmarkIds;
     switch (action.type) {
         case bookmarkSuccessConstants.CREATE:
-            return { ...state, error: "", bookmarks: [...state.bookmarks, action.payload.bookmark] };
+            newBookmarks = state.bookmarks
+            newBookmarks[action.payload.bookmark.id] = action.payload.bookmark;
+            return { ...state, error: "", bookmarks: { ...newBookmarks }, rootBookmarkIds: state.currentFolder === "root" ? [...state.rootBookmarkIds, action.payload.bookmark.id] : [...state.rootBookmarkIds] };
 
         case bookmarkFailureConstants.CREATE:
             return { ...state, error: "failed to create bookmark" };
 
         case bookmarkSuccessConstants.DELETE:
-            var newBookmarks = state.bookmarks;
-            newBookmarks = newBookmarks.filter((bookmark: { id?: string, createdAt?: string }) => bookmark.id !== action.payload.id);
-
-            return { error: "", bookmarks: newBookmarks };
+            newBookmarks = state.bookmarks;
+            delete newBookmarks[action.payload.id];
+            newRootBookmarkIds = state.rootBookmarkIds.filter((id: string) => id !== action.payload.id);
+            return { ...state, error: "", bookmarks: { ...newBookmarks }, rootBookmarkIds: [...newRootBookmarkIds] };
 
         case bookmarkFailureConstants.DELETE:
             return { ...state, error: "failed to delete bookmark" };

@@ -23,18 +23,20 @@ export const FoldersDiv = styled(Box)({
   marginLeft: 20,
   overflowY: 'scroll',
   overflowX: 'auto',
+  scrollbarWidth: 'thin',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
   gap: 10,
   '&::-webkit-scrollbar': {
-    width: '0.2em'
+    width: '1px',
+    height: '1px'
   },
   '&::-webkit-scrollbar-track': {
-    webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+    webkitBoxShadow: 'inset 0 0 1px rgba(0,0,0,0.00)'
   },
   '&::-webkit-scrollbar-thumb': {
-    backgroundColor: 'rgba(0,0,0,.1)',
+    backgroundColor: 'rgba(0,0,0,.03)',
     outline: '1px solid slategrey',
     borderRadius: 50
   }

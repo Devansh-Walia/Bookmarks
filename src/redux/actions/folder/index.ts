@@ -14,8 +14,8 @@ interface READ_CHILDREN { type: folderConstants.READ_CHILDREN, payload: object }
 interface READ_CHILDREN_SUCCESS { type: folderSuccessConstants.READ_CHILDREN, payload: { parentId: string, childFolders: foldersType, childFolderIds: string[] } }
 interface READ_CHILDREN_FAILURE { type: folderFailureConstants.READ_CHILDREN, payload: object }
 
-interface DELETE { type: folderConstants.DELETE, payload: object }
-interface DELETE_SUCCESS { type: folderSuccessConstants.DELETE, payload: object }
+interface DELETE { type: folderConstants.DELETE, payload: string }
+interface DELETE_SUCCESS { type: folderSuccessConstants.DELETE, payload: string }
 interface DELETE_FAILURE { type: folderFailureConstants.DELETE, payload: object }
 
 interface UPDATE { type: folderConstants.UPDATE, payload: object }

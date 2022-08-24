@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import FolderMenu from '../Main/Menu';
-import { useGetChildren } from '../../redux';
+import { useDeleteFolder, useGetChildren } from '../../redux';
 import { useLogout } from '../../redux/hooks/AuthHooks';
 import { folderSelector } from '../../services/SelectorFunctions';
 import {
@@ -65,6 +65,7 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({
     isOpen[folder.id] !== undefined && isOpen[folder.id]
   );
   const [getChildren] = useGetChildren();
+  const [deleteFolder] = useDeleteFolder();
 
   const toggleRotate = () => {
     setRotate(!rotate);
@@ -122,6 +123,7 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({
               value: 'delete',
               handleClick: () => {
                 console.log('delete', folder.id);
+                deleteFolder(folder.id);
               }
             },
             {

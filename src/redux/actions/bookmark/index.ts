@@ -1,9 +1,9 @@
 
 import { bookmarkConstants, bookmarkFailureConstants, bookmarkSuccessConstants } from '../../../constants';
-import { bookamrksType } from '../../../constants/types';
+import { bookamrksType, bookmarkType } from '../../../constants/types';
 
-export interface CREATE { type: bookmarkConstants.CREATE, payload: { name: string, url: string } }
-export interface CREATE_SUCCESS { type: bookmarkSuccessConstants.CREATE, payload: { bookmark: object } }
+export interface CREATE { type: bookmarkConstants.CREATE, payload: { name: string, url: string, folderId?: string } }
+export interface CREATE_SUCCESS { type: bookmarkSuccessConstants.CREATE, payload: { bookmark: bookmarkType } }
 export interface CREATE_FAILURE { type: bookmarkFailureConstants.CREATE, payload: object }
 
 export interface READ { type: bookmarkConstants.READ, payload: { folderId: string } }

@@ -9,6 +9,7 @@ const initialState = {
     isOpen: {}
 }
 const reducer = (state: any = initialState, action: folderActions) => {
+    let newRootIds;
     switch (action.type) {
         case folderSuccessConstants.CREATE:
             return { ...state, error: "", ...action.payload };
@@ -17,7 +18,9 @@ const reducer = (state: any = initialState, action: folderActions) => {
             return { ...state, error: "failed to create folder" };
 
         case folderSuccessConstants.DELETE:
-            return { ...state, error: "", ...action.payload };
+            delete state.folders[action.payload];
+            newRootIds = state.rootIds.filter((id: string) => id !== action.payload)
+            return { ...state, error: "", rootIds: [...newRootIds] };
         case folderFailureConstants.DELETE:
             return { ...state, error: "failed to delete folder" };
 
