@@ -15,6 +15,7 @@ import {
   StyledButton2,
   StyledButtonGiant
 } from '../../styles';
+import { folderType } from '../../constants/types';
 
 export const Logout: FunctionComponent = () => {
   const navigate = useNavigate();
@@ -52,21 +53,22 @@ export const AddLink: FunctionComponent = () => {
 };
 
 interface IfolderProps {
-  folder: {
-    name?: string;
-    id?: string;
-    children?: Object[];
-  };
+  folder: folderType;
   inner?: boolean;
 }
 export const FolderButton: FunctionComponent<IfolderProps> = ({
   folder,
   inner = false
 }) => {
-  const { isLoadingChildren } = useSelector(folderSelector);
-  const [rotate, setRotate] = useState(false);
-
+  const { isLoadingChildren, isOpen, folders } = useSelector(folderSelector);
+  const [rotate, setRotate] = useState(
+    isOpen[folder.id] !== undefined && isOpen[folder.id]
+  );
   const [getChildren] = useGetChildren();
+
+  const toggleRotate = () => {
+    setRotate(!rotate);
+  };
 
   return (
     <Box
@@ -76,11 +78,16 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({
         borderRadius: 20
       }}>
       <FolderButtonsAndMenuDiv>
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, minWidth: 100 }}>
           <ButtonBase
             onClick={() => {
-              getChildren(folder.id!);
-              setRotate(true);
+              if (!rotate) {
+                isOpen[folder.id] = true;
+                if (!folder.childrenIds) getChildren(folder.id);
+              } else {
+                isOpen[folder.id] = false;
+              }
+              toggleRotate();
             }}>
             <Icon
               alt=""
@@ -126,11 +133,17 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({
           ]}
         />
       </FolderButtonsAndMenuDiv>
-      {
+      {rotate && (
         <InnerFolderContainer>
-          {isLoadingChildren ? '...loading' : ''}
+          {isLoadingChildren === folder.id
+            ? '...loading'
+            : folder.childrenIds && folder.childrenIds.length > 0
+            ? folder.childrenIds.map((id) => (
+                <FolderButton key={id} folder={folders[id]} />
+              ))
+            : 'No children'}
         </InnerFolderContainer>
-      }
+      )}
     </Box>
   );
 };

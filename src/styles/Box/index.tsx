@@ -22,7 +22,7 @@ export const FoldersDiv = styled(Box)({
   width: '90%',
   marginLeft: 20,
   overflowY: 'scroll',
-  overflowX: 'hidden',
+  overflowX: 'auto',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',

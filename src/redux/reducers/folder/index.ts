@@ -5,30 +5,31 @@ const initialState = {
     folders: {},
     rootIds: [],
     error: "",
-    isLoading: false
+    isLoading: false,
+    isOpen: {}
 }
 const reducer = (state: any = initialState, action: folderActions) => {
     switch (action.type) {
         case folderSuccessConstants.CREATE:
-            return { error: "", ...action.payload };
+            return { ...state, error: "", ...action.payload };
 
         case folderFailureConstants.CREATE:
             return { ...state, error: "failed to create folder" };
 
         case folderSuccessConstants.DELETE:
-            return { error: "", ...action.payload };
+            return { ...state, error: "", ...action.payload };
         case folderFailureConstants.DELETE:
             return { ...state, error: "failed to delete folder" };
 
         case folderConstants.READ:
             return { ...state, isLoading: true }
         case folderSuccessConstants.READ:
-            return { error: "", ...action.payload, isLoading: false };
+            return { ...state, error: "", ...action.payload, isLoading: false };
         case folderFailureConstants.READ:
             return { ...state, error: "failed to read folders", isLoading: false };
 
         case folderConstants.READ_CHILDREN:
-            return { ...state, isLoadingChildren: true, parentId: action.payload }
+            return { ...state, isLoadingChildren: action.payload, parentId: action.payload }
 
         case folderSuccessConstants.READ_CHILDREN:
             const UpdatedFolders = { ...state.folders, ...action.payload.childFolders }
@@ -42,7 +43,7 @@ const reducer = (state: any = initialState, action: folderActions) => {
             return { ...state, error: "failed to read folder children", isLoadingChildren: false };
 
         case folderSuccessConstants.UPDATE:
-            return { error: "", folders: action.payload };
+            return { ...state, error: "", folders: action.payload };
         case folderFailureConstants.UPDATE:
             return { ...state, error: "failed to update folders" };
 

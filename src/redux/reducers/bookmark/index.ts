@@ -2,9 +2,11 @@ import { bookmarkActions } from "../../actions";
 import { bookmarkConstants, bookmarkFailureConstants, bookmarkSuccessConstants } from '../../../constants'
 
 const initialState = {
-    bookmarks: [],
     error: "",
-    isLoading: false
+    isLoading: false,
+    rootBookmarkIds: [],
+    bookmarks: {},
+    currentFolder: "root"
 }
 const reducer = (state: any = initialState, action: bookmarkActions) => {
     switch (action.type) {
@@ -26,23 +28,23 @@ const reducer = (state: any = initialState, action: bookmarkActions) => {
         case bookmarkConstants.READ:
             return { ...state, isLoading: true }
         case bookmarkSuccessConstants.READ:
-            return { error: "", ...action.payload, isLoading: false };
+            return { ...state, error: "", ...action.payload, isLoading: false };
 
         case bookmarkFailureConstants.READ:
             return { ...state, error: "failed to read bookmarks", isLoading: false };
 
         case bookmarkSuccessConstants.PATCH:
-            return { error: "", bookmarks: action.payload };
+            return { ...state, error: "", bookmarks: action.payload };
 
         case bookmarkFailureConstants.PATCH:
             return { ...state, error: "failed to.PATCH bookmarks" };
         case bookmarkSuccessConstants.TOGGLE:
-            return { error: "", bookmarks: action.payload };
+            return { ...state, error: "", bookmarks: action.payload };
 
         case bookmarkFailureConstants.TOGGLE:
             return { ...state, error: "failed to.TOGGLE bookmarks" };
         case bookmarkSuccessConstants.CHANGE_DETAILS:
-            return { error: "", bookmarks: action.payload };
+            return { ...state, error: "", bookmarks: action.payload };
 
         case bookmarkFailureConstants.CHANGE_DETAILS:
             return { ...state, error: "failed to.CHANGE_DETAILS bookmarks" };
