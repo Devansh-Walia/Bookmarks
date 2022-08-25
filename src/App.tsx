@@ -17,7 +17,9 @@ const App: FunctionComponent = () => {
             )
           }
         />
-        <Route path="/dash" element={<Dash />} />
+        <Route path="/dash" element={<Dash />}>
+          <Route path=":id" element={<Dash />} />
+        </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<Navigate to="/dash" />} />

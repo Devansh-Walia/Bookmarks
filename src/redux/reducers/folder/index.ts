@@ -50,6 +50,18 @@ const reducer = (state: any = initialState, action: folderActions) => {
         case folderFailureConstants.UPDATE:
             return { ...state, error: "failed to update folders" };
 
+        case folderSuccessConstants.ADD_BID:
+            if (action.payload.folderId) {
+                const newFolder = state.folders[action.payload.folderId];
+                newFolder['bookmarkIds'] = action.payload.bookmarkIds;
+                const newFolders = state.folders;
+                newFolders[action.payload.folderId] = newFolder;
+                console.log(newFolders);
+                return { ...state, folders: { ...newFolders } }
+            }
+
+            return { ...state };
+
         default:
             return { ...state, error: null };
     }

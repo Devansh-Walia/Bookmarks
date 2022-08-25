@@ -29,7 +29,7 @@ export const FoldersDiv = styled(Box)({
   alignItems: 'flex-start',
   gap: 10,
   '&::-webkit-scrollbar': {
-    width: '1px',
+    width: '0px',
     height: '1px'
   },
   '&::-webkit-scrollbar-track': {

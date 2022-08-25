@@ -31,7 +31,13 @@ const reducer = (state: any = initialState, action: bookmarkActions) => {
         case bookmarkConstants.READ:
             return { ...state, isLoading: true }
         case bookmarkSuccessConstants.READ:
-            return { ...state, error: "", ...action.payload, isLoading: false };
+            return {
+                ...state, error: "",
+                bookmarks: { ...state.bookmarks, ...action.payload.bookmarks },
+                rootBookmarkIds: action.payload.currentFolder === "root" ? action.payload.rootBookmarkIds : state.rootBookmarkIds,
+                currentFolder: action.payload.currentFolder,
+                isLoading: false
+            };
 
         case bookmarkFailureConstants.READ:
             return { ...state, error: "failed to read bookmarks", isLoading: false };

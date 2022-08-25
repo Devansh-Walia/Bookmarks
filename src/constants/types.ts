@@ -20,7 +20,7 @@ export interface folderType {
     name: string;
     updatedAt: null | string;
     childrenIds?: string[];
-    bookmarkIds?: string[];
+    bookmarkIds: string[];
 }
 
 export interface foldersType {

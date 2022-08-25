@@ -53,6 +53,7 @@ export enum folderSuccessConstants {
     READ_CHILDREN = "READ_FOLDER_CHILDREN_SUCCESS",
     UPDATE = "UPDATE_SUCCESS_FOLDER",
     DELETE = "DELETE_SUCCESS_FOLDER",
+    ADD_BID = "ADD_BIDS_TO_FOLDER"
 }
 export enum folderFailureConstants {
     CREATE = "CREATE_FAILURE_FOLDER",

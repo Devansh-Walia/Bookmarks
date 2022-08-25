@@ -11,11 +11,13 @@ const Dash: FunctionComponent = () => {
   const [getFolder] = useGetFolder();
 
   useEffect(() => {
-    console.log('changed');
-    getBookmark(params.hasOwnProperty('id') ? params.id : undefined);
-    getFolder(params.hasOwnProperty('id') ? params.id : undefined);
+    getFolder();
     getUser();
-  }, [params, getBookmark, getFolder, getUser]);
+  }, [getFolder, getUser]);
+
+  useEffect(() => {
+    getBookmark(params.hasOwnProperty('id') ? params.id : undefined);
+  }, [getBookmark, params]);
 
   return (
     <DashContainer>

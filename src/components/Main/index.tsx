@@ -13,6 +13,7 @@ import {
   NoBookmarks
 } from '../../styles';
 import { BookmarkForm } from '../custForm';
+import Loader from '../Loader';
 import { Card } from './Cards';
 import MiddleBar from './MiddlePart';
 import { ProfileSection } from './Profile';
@@ -22,10 +23,12 @@ export const Main: FunctionComponent = (props) => {
   const { auth, folder, bookmark }: IRootState = useSelector(stateSelector);
   const [addBookmark] = useAddBookmark();
   const currentBookmarkIds =
-    bookmark.currentFolder === 'root'
+    params && !params.hasOwnProperty('id')
       ? bookmark.rootBookmarkIds
-      : folder.folders[bookmark.curretFolder].bookmarkIds;
-
+      : folder.folders[params.id!] &&
+        folder.folders[params.id!].hasOwnProperty('bookmarkIds')
+      ? folder.folders[params.id!].bookmarkIds
+      : [];
   return (
     <MainContainer>
       <ProfileSection user={auth.user} />
@@ -42,7 +45,9 @@ export const Main: FunctionComponent = (props) => {
       </CustomBoxBlueSmall>
       <MiddleBar />
       <Cards>
-        {currentBookmarkIds.length > 0 ? (
+        {bookmark.isLoading ? (
+          <Loader />
+        ) : currentBookmarkIds.length > 0 ? (
           currentBookmarkIds.map((id: string) => (
             <Card key={id} bookmark={bookmark.bookmarks[id]} />
           ))

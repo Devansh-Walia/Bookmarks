@@ -4,12 +4,15 @@ import { folderSelector } from '../../services/SelectorFunctions';
 
 import { FoldersDiv } from '../../styles';
 import { AddLinkGiant, FolderButton } from '../buttons';
+import Loader from '../Loader';
 
 export const Folders: FunctionComponent = () => {
-  const { folders, rootIds } = useSelector(folderSelector);
+  const { folders, rootIds, isLoading } = useSelector(folderSelector);
   return (
     <FoldersDiv>
-      {rootIds.length === 0 ? (
+      {isLoading ? (
+        <Loader />
+      ) : rootIds.length === 0 ? (
         <AddLinkGiant />
       ) : (
         rootIds.map((id: string) => {

@@ -3,6 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Box } from '@mui/material';
 
 const ITEM_HEIGHT = 48;
 interface IOptions {
@@ -36,7 +37,7 @@ const DropDownMenu: React.FunctionComponent<IMenuProps> = ({
   };
 
   return (
-    <div style={{ width: 'fit-content' }}>
+    <Box sx={{ width: 'fit-content', opacity: 0, '&:hover': { opacity: 1 } }}>
       <IconButton
         aria-label="more"
         id="long-button"
@@ -77,7 +78,7 @@ const DropDownMenu: React.FunctionComponent<IMenuProps> = ({
           </MenuItem>
         ))}
       </Menu>
-    </div>
+    </Box>
   );
 };
 

@@ -1,5 +1,5 @@
-import { bookmarkFailureConstants, bookmarkSuccessConstants } from '../../../../constants';
-import { call, put } from 'redux-saga/effects'
+import { bookmarkFailureConstants, bookmarkSuccessConstants, folderSuccessConstants } from '../../../../constants';
+import { all, call, put } from 'redux-saga/effects'
 import { changeDetailsBookmark, createBookmark, DeleteBookmark, getBookmark, patchBookmark, toggleFavBookmark } from '../../../../services';
 import { CHANGE_DETAILS, CREATE, DELETE, PATCH, READ, TOGGLE } from '../../../actions/bookmark'
 import { bookamrksType, bookmarkType } from '../../../../constants/types';
@@ -27,12 +27,21 @@ export function* GetBookmarkWatcherFunction(action: READ): Generator<any> {
     try {
         const response: any = yield call(getBookmark, { folderId: action.payload.folderId });
         const bookmarks: bookamrksType = {};
-        const rootBookmarkIds: string[] = [];
+        const bookmarkIds: string[] = [];
         response.data.forEach((element: bookmarkType) => {
-            rootBookmarkIds.push(element.id);
+            bookmarkIds.push(element.id);
             bookmarks[element.id] = element;
         });
-        yield put({ type: bookmarkSuccessConstants.READ, payload: { bookmarks, rootBookmarkIds, currentFolder: action.payload.folderId || "root" } });
+
+        yield all([put({
+            type: bookmarkSuccessConstants.READ, payload: {
+                bookmarks,
+                rootBookmarkIds: action.payload.folderId ? [] : bookmarkIds,
+                currentFolder: action.payload.folderId || "root"
+            }
+        }),
+        put({ type: folderSuccessConstants.ADD_BID, payload: { folderId: action.payload.folderId, bookmarkIds: bookmarkIds } })
+        ])
     }
     catch (e) {
         yield put({ type: bookmarkFailureConstants.READ })

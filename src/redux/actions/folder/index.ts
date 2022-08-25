@@ -22,6 +22,8 @@ interface UPDATE { type: folderConstants.UPDATE, payload: object }
 interface UPDATE_SUCCESS { type: folderSuccessConstants.UPDATE, payload: object }
 interface UPDATE_FAILURE { type: folderFailureConstants.UPDATE, payload: object }
 
+interface ADD_BIDS { type: folderSuccessConstants.ADD_BID, payload: { folderId: string, bookmarkIds: string[] } }
+
 
 
 
@@ -30,4 +32,5 @@ export type folderActions = CREATE | READ | READ_CHILDREN | DELETE | UPDATE
     | READ_FAILURE | READ_SUCCESS
     | READ_CHILDREN_FAILURE | READ_CHILDREN_SUCCESS
     | DELETE_FAILURE | DELETE_SUCCESS
-    | UPDATE_FAILURE | UPDATE_SUCCESS;
+    | UPDATE_FAILURE | UPDATE_SUCCESS
+    | ADD_BIDS;

@@ -6,7 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import FolderMenu from '../Main/Menu';
 import { useDeleteFolder, useGetChildren } from '../../redux';
 import { useLogout } from '../../redux/hooks/AuthHooks';
-import { folderSelector } from '../../services/SelectorFunctions';
+import {
+  bookmarkSelector,
+  folderSelector
+} from '../../services/SelectorFunctions';
 import {
   AddLinkStyle,
   FolderButtonsAndMenuDiv,
@@ -61,9 +64,11 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({
   inner = false
 }) => {
   const { isLoadingChildren, isOpen, folders } = useSelector(folderSelector);
+  const { currentFolder } = useSelector(bookmarkSelector);
   const [rotate, setRotate] = useState(
     isOpen[folder.id] !== undefined && isOpen[folder.id]
   );
+  const navigate = useNavigate();
   const [getChildren] = useGetChildren();
   const [deleteFolder] = useDeleteFolder();
 
@@ -79,7 +84,15 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({
         borderRadius: 16
       }}>
       <FolderButtonsAndMenuDiv>
-        <div style={{ flex: 1, minWidth: 100 }}>
+        <div
+          style={{
+            flex: 1,
+            minWidth: 200,
+            maxWidth: 200,
+            backgroundColor:
+              currentFolder === folder.id ? '#E4E3FF' : undefined,
+            borderRadius: 16
+          }}>
           <ButtonBase
             onClick={() => {
               if (!rotate) {
@@ -99,6 +112,7 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({
           <ButtonBase
             onClick={() => {
               console.log(folder.id);
+              navigate(`${folder.id}`);
             }}>
             <Icon
               alt=""
