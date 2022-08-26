@@ -4,10 +4,12 @@ import { FunctionComponent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { object, string } from 'yup';
+import { IRootState } from '../../redux/reducers';
 
 import {
   authSelector,
-  bookmarkSelector
+  bookmarkSelector,
+  folderSelector
 } from '../../services/SelectorFunctions';
 import {
   BookMarkFormStyled,
@@ -22,6 +24,7 @@ import {
   StyledButton
 } from '../../styles';
 import { inputField, inputFieldAddForm } from '../inputField';
+import { Loader } from '../Loader';
 
 const RegisterValidation = object().shape({
   Name: string().required('Required'),
@@ -234,7 +237,8 @@ export const BookmarkForm: FunctionComponent<BookmarkProps> = ({
   onSubmit
 }) => {
   const [error, setError] = useState(false);
-  const bookmark = useSelector(bookmarkSelector);
+  const bookmark: IRootState['bookmark'] = useSelector(bookmarkSelector);
+  const { folders } = useSelector(folderSelector);
 
   useEffect(() => {
     if (bookmark.error) {
@@ -272,9 +276,26 @@ export const BookmarkForm: FunctionComponent<BookmarkProps> = ({
           />
           <Typography sx={{ color: 'white', fontSize: 10 }}>Folder</Typography>
           <FlexDiv2>
-            <ModalButton variant="contained">ROOT</ModalButton>
-            <FormButton variant="contained" type="submit">
-              Save
+            <ModalButton variant="contained">
+              {bookmark.currentFolder === 'root' ? (
+                'Root'
+              ) : folders[bookmark.currentFolder] ? (
+                folders[bookmark.currentFolder].name
+              ) : (
+                <Link style={{ textDecoration: 'none' }} to="/dash">
+                  No Such Folder Yet, Go Back to root
+                </Link>
+              )}
+            </ModalButton>
+            <FormButton
+              variant="contained"
+              type="submit"
+              disabled={bookmark.isAdding === 'IN_PROGRESS'}>
+              {bookmark.isAdding === 'IN_PROGRESS' ? (
+                <Loader size={20} />
+              ) : (
+                'Save'
+              )}
             </FormButton>
           </FlexDiv2>
           {error && <ErrorDiv>invalid link</ErrorDiv>}

@@ -59,8 +59,8 @@ const reducer = (state: any = initialState, action: folderActions) => {
                 console.log(newFolders);
                 return { ...state, folders: { ...newFolders } }
             }
-
-            return { ...state };
+            else
+                return { ...state };
 
         default:
             return { ...state, error: null };

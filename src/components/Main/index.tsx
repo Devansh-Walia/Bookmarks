@@ -13,7 +13,7 @@ import {
   NoBookmarks
 } from '../../styles';
 import { BookmarkForm } from '../custForm';
-import Loader from '../Loader';
+import { Loader } from '../Loader';
 import { Card } from './Cards';
 import MiddleBar from './MiddlePart';
 import { ProfileSection } from './Profile';

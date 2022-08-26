@@ -6,18 +6,27 @@ const initialState = {
     isLoading: false,
     rootBookmarkIds: [],
     bookmarks: {},
-    currentFolder: "root"
+    currentFolder: "root",
+    isAdding: "NO"
 }
 const reducer = (state: any = initialState, action: bookmarkActions) => {
     let newBookmarks, newRootBookmarkIds;
     switch (action.type) {
+        case bookmarkConstants.CREATE:
+            return { ...state, isAdding: "IN_PROGRESS" };
+
         case bookmarkSuccessConstants.CREATE:
             newBookmarks = state.bookmarks
             newBookmarks[action.payload.bookmark.id] = action.payload.bookmark;
-            return { ...state, error: "", bookmarks: { ...newBookmarks }, rootBookmarkIds: state.currentFolder === "root" ? [...state.rootBookmarkIds, action.payload.bookmark.id] : [...state.rootBookmarkIds] };
+            return {
+                ...state, error: "",
+                bookmarks: { ...newBookmarks },
+                rootBookmarkIds: state.currentFolder === "root" ? [...state.rootBookmarkIds, action.payload.bookmark.id] : [...state.rootBookmarkIds],
+                isAdding: "NO"
+            };
 
         case bookmarkFailureConstants.CREATE:
-            return { ...state, error: "failed to create bookmark" };
+            return { ...state, error: "failed to create bookmark", isAdding: "NO" };
 
         case bookmarkSuccessConstants.DELETE:
             newBookmarks = state.bookmarks;

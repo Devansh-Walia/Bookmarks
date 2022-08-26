@@ -1,9 +1,18 @@
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, LinearProgress } from '@mui/material';
 import { FunctionComponent } from 'react';
 
-const Loader: FunctionComponent = () => (
+interface LoaderProps {
+  size?: number;
+}
+export const Loader: FunctionComponent<LoaderProps> = ({
+  size = undefined
+}) => (
   <div style={{ margin: 'auto' }}>
-    <CircularProgress />
+    <CircularProgress size={size} />
   </div>
 );
-export default Loader;
+export const LinearLoader: FunctionComponent = () => (
+  <div style={{ margin: 'auto' }}>
+    <LinearProgress />
+  </div>
+);

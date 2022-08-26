@@ -1,23 +1,24 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent } from 'react';
+// import { useState } from 'react';
 
 import {
   MiddleBar,
-  MiddleBarLeftDiv,
-  Toggle,
-  ToggleButton
+  MiddleBarLeftDiv
+  // Toggle,
+  // ToggleButton
 } from '../../../styles';
 import { AddLink } from '../../buttons';
 import { SearchBox } from '../../searchBox';
 
 const MiddlePart: FunctionComponent = () => {
-  const [typeToggleChecked, setTypeToggleChecked] = useState(true);
+  // const [typeToggleChecked, setTypeToggleChecked] = useState(true);
 
   return (
     <MiddleBar>
       <SearchBox width={'400px'} bgcolor={'rgb(116 114 114 / 20%)'} />
       <MiddleBarLeftDiv>
         <AddLink />
-        <Toggle>
+        {/* <Toggle>
           <ToggleButton
             checked={typeToggleChecked}
             onClick={() => {
@@ -32,7 +33,7 @@ const MiddlePart: FunctionComponent = () => {
             }}>
             <img src={'/assets/icons/burger.png'} alt="" />
           </ToggleButton>
-        </Toggle>
+        </Toggle> */}
       </MiddleBarLeftDiv>
     </MiddleBar>
   );

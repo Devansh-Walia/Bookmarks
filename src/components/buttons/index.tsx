@@ -19,6 +19,7 @@ import {
   StyledButtonGiant
 } from '../../styles';
 import { folderType } from '../../constants/types';
+import { LinearLoader } from '../Loader';
 
 export const Logout: FunctionComponent = () => {
   const navigate = useNavigate();
@@ -151,13 +152,15 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({
       </FolderButtonsAndMenuDiv>
       {rotate && (
         <InnerFolderContainer>
-          {isLoadingChildren === folder.id
-            ? '...loading'
-            : folder.childrenIds && folder.childrenIds.length > 0
-            ? folder.childrenIds.map((id) => (
-                <FolderButton key={id} folder={folders[id]} />
-              ))
-            : 'No children'}
+          {isLoadingChildren === folder.id ? (
+            <LinearLoader />
+          ) : folder.childrenIds && folder.childrenIds.length > 0 ? (
+            folder.childrenIds.map((id) => (
+              <FolderButton key={id} folder={folders[id]} />
+            ))
+          ) : (
+            'No children'
+          )}
         </InnerFolderContainer>
       )}
     </Box>
