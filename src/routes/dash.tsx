@@ -1,6 +1,8 @@
 import { FunctionComponent, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Favourites, Folders, Logout, Main, SearchBox } from '../components';
+
+import { Favorites, Folders, Logout, Main, SearchBox } from '../components';
+import { RootModal } from '../components/FolderModal';
 import { useGetBookmark, useGetFolder, useGetUser } from '../redux';
 import { DashContainer, LeftPane, Logo, LogoTitle } from '../styles';
 
@@ -28,7 +30,8 @@ const Dash: FunctionComponent = () => {
         <LogoTitle>BOOKMARK</LogoTitle>
         <SearchBox width={'230px'} bgcolor={'white'} />
         <Folders />
-        <Favourites />
+        <RootModal parentId={undefined} />
+        <Favorites />
         <Logout />
       </LeftPane>
       <Main />

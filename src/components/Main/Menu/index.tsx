@@ -6,10 +6,12 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Box } from '@mui/material';
 
 const ITEM_HEIGHT = 48;
+
 interface IOptions {
   value: string;
   handleClick: () => void;
 }
+
 interface IMenuProps {
   bookmarkId?: string;
   options?: IOptions[];

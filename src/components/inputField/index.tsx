@@ -8,7 +8,7 @@ import {
   InputFieldWhite
 } from '../../styles';
 
-export const inputField: FunctionComponent<FieldProps & TextFieldProps> = ({
+export const InputField: FunctionComponent<FieldProps & TextFieldProps> = ({
   placeholder,
   field,
   type
@@ -27,7 +27,7 @@ export const inputField: FunctionComponent<FieldProps & TextFieldProps> = ({
   );
 };
 
-export const inputFieldAddForm: FunctionComponent<
+export const InputFieldAddForm: FunctionComponent<
   FieldProps & TextFieldProps
 > = ({ placeholder, field }) => {
   return (

@@ -1,5 +1,6 @@
 import { InputAdornment } from '@mui/material';
 import { FunctionComponent } from 'react';
+
 import { StyledTextField } from '../../styles';
 
 interface StyledSearchProps {

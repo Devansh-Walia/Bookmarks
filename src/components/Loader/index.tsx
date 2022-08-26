@@ -11,6 +11,7 @@ export const Loader: FunctionComponent<LoaderProps> = ({
     <CircularProgress size={size} />
   </div>
 );
+
 export const LinearLoader: FunctionComponent = () => (
   <div style={{ margin: 'auto' }}>
     <LinearProgress />

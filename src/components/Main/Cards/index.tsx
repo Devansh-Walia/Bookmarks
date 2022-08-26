@@ -1,8 +1,8 @@
 import { Typography } from '@mui/material';
 import { FunctionComponent } from 'react';
+
 import { ICardProps } from '../../../constants/types';
 import { useDeleteBookmark } from '../../../redux';
-
 import {
   CardContainer,
   CardImage,

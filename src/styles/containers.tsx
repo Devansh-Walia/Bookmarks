@@ -8,6 +8,7 @@ export const CustomBoxBlue = styled(Box)(({ theme }) => ({
   flex: 1,
   flexDriection: 'row'
 }));
+
 export const CustomBoxBlueSmall = styled(Box)(({ theme }) => ({
   width: '100%',
   backgroundColor: theme.palette.primary.main,
@@ -16,10 +17,12 @@ export const CustomBoxBlueSmall = styled(Box)(({ theme }) => ({
   flexDriection: 'column',
   borderRadius: 20
 }));
+
 export const CustomBoxWhite = styled(Box)(({ theme }) => ({
   height: '100vh',
   width: '100vw'
 }));
+
 export const CustomBoxWhiteSmall = styled(Box)(({ theme }) => ({
   height: '100vh',
   width: '60vw',

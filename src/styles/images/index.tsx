@@ -5,6 +5,7 @@ export const LoadingGif = styled('img')({
   margin: 'auto',
   width: '50%'
 });
+
 export const Saly = styled('img')({
   height: '42vw',
   minHeight: '300px',

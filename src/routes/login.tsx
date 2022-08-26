@@ -1,18 +1,19 @@
 import { FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
+
 import { CustForm2 } from '../components';
 import AuthContainer from '../containers/AuthContainer';
 import { useLogin } from '../redux/hooks/AuthHooks';
 import { getDataFromLocalStorage } from '../services';
 import { authSelector } from '../services/SelectorFunctions';
 import {
-  WelcomeMessage,
+  CustomBox,
+  CustomBoxWhiteSmall,
   Headding,
   HeaddingBold,
-  CustomBoxWhiteSmall,
-  CustomBox,
-  Saly
+  Saly,
+  WelcomeMessage
 } from '../styles';
 
 interface onSubmitValues {

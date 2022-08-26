@@ -1,39 +1,48 @@
-import { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { createBookmarkAction, deleteBookmarkAction, getBookmarkAction } from "../../action-creators/bookmark";
+import {
+  createBookmarkAction,
+  deleteBookmarkAction,
+  getBookmarkAction
+} from '../../action-creators/bookmark';
 
 interface AddPayload {
-    url: string;
-    folderId?: string;
-    name?: string;
+  url: string;
+  folderId?: string;
+  name?: string;
 }
+
 export const useAddBookmark = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const addBookmark = useCallback(
-        (payload: AddPayload) => dispatch(createBookmarkAction(payload.url, payload.folderId)),
-        [dispatch]);
+  const addBookmark = useCallback(
+    (payload: AddPayload) =>
+      dispatch(createBookmarkAction(payload.url, payload.folderId)),
+    [dispatch]
+  );
 
-    return [addBookmark];
-}
+  return [addBookmark];
+};
 
 export const useGetBookmark = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const getBookmark = useCallback(
-        (folderId?: string) => dispatch(getBookmarkAction(folderId)),
-        [dispatch]);
+  const getBookmark = useCallback(
+    (folderId?: string) => dispatch(getBookmarkAction(folderId)),
+    [dispatch]
+  );
 
-    return [getBookmark];
-}
+  return [getBookmark];
+};
 
 export const useDeleteBookmark = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const deleteBookmark = useCallback(
-        (bookmarkId: string) => dispatch(deleteBookmarkAction(bookmarkId)),
-        [dispatch])
+  const deleteBookmark = useCallback(
+    (bookmarkId: string) => dispatch(deleteBookmarkAction(bookmarkId)),
+    [dispatch]
+  );
 
-    return [deleteBookmark];
-}
+  return [deleteBookmark];
+};

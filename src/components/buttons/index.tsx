@@ -3,7 +3,7 @@ import { FunctionComponent, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import FolderMenu from '../Main/Menu';
+import { folderType } from '../../constants/types';
 import { useDeleteFolder, useGetChildren } from '../../redux';
 import { useLogout } from '../../redux/hooks/AuthHooks';
 import {
@@ -18,8 +18,8 @@ import {
   StyledButton2,
   StyledButtonGiant
 } from '../../styles';
-import { folderType } from '../../constants/types';
 import { LinearLoader } from '../Loader';
+import FolderMenu from '../Main/Menu';
 
 export const Logout: FunctionComponent = () => {
   const navigate = useNavigate();
@@ -39,11 +39,11 @@ export const Logout: FunctionComponent = () => {
   );
 };
 
-export const Favourites: FunctionComponent = () => {
+export const Favorites: FunctionComponent = () => {
   return (
     <StyledButton2>
       <Icon alt="fav" src={'/assets/icons/heart.png'} />
-      Favourites
+      Favorites
     </StyledButton2>
   );
 };
@@ -152,7 +152,7 @@ export const FolderButton: FunctionComponent<IfolderProps> = ({
       </FolderButtonsAndMenuDiv>
       {rotate && (
         <InnerFolderContainer>
-          {isLoadingChildren === folder.id ? (
+          {isLoadingChildren.includes(folder.id) ? (
             <LinearLoader />
           ) : folder.childrenIds && folder.childrenIds.length > 0 ? (
             folder.childrenIds.map((id) => (

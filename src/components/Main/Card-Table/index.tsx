@@ -4,6 +4,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CopyAllIcon from '@mui/icons-material/CopyAll';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+
 import { ICardProps } from '../../../constants/types';
 
 export const Card_table: FunctionComponent<ICardProps> = ({ bookmark }) => {

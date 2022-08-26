@@ -1,52 +1,58 @@
-import { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { getme, login, logout, signin } from "../../action-creators"
+import { GET_ME, login, logout, signin } from '../../action-creators';
 
 interface loginPayload {
-    email: string,
-    password: string,
-    navigate: any,
+  email: string;
+  password: string;
+  navigate: any;
 }
+
 export const useLogin = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const loggingIn = useCallback(
-        (payload: loginPayload) => dispatch(login(payload.email, payload.password, payload.navigate)),
-        [dispatch]);
+  const loggingIn = useCallback(
+    (payload: loginPayload) =>
+      dispatch(login(payload.email, payload.password, payload.navigate)),
+    [dispatch]
+  );
 
-    return [loggingIn];
-}
+  return [loggingIn];
+};
 
 interface signinPayload {
-    userName: string,
-    email: string,
-    password: string
+  userName: string;
+  email: string;
+  password: string;
 }
+
 export const useSignin = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const signingIn = useCallback(
-        (payload: signinPayload) => dispatch(signin(payload.userName, payload.email, payload.password)),
-        [dispatch]);
+  const signingIn = useCallback(
+    (payload: signinPayload) =>
+      dispatch(signin(payload.userName, payload.email, payload.password)),
+    [dispatch]
+  );
 
-    return [signingIn];
-}
+  return [signingIn];
+};
 
 export const useLogout = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const loggingOut = useCallback(() => dispatch(logout()), [dispatch]);
+  const loggingOut = useCallback(() => dispatch(logout()), [dispatch]);
 
-    return [loggingOut];
-}
+  return [loggingOut];
+};
 
 export const useGetUser = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const getUser = useCallback(() => {
-        dispatch(getme())
-    }, [dispatch]);
+  const getUser = useCallback(() => {
+    dispatch(GET_ME());
+  }, [dispatch]);
 
-    return [getUser];
-}
+  return [getUser];
+};

@@ -11,12 +11,12 @@ import {
 } from '../services';
 import { authSelector } from '../services/SelectorFunctions';
 import {
-  WelcomeMessage,
+  CustomBox,
+  CustomBoxWhiteSmall,
   Headding,
   HeaddingBold,
-  CustomBoxWhiteSmall,
-  CustomBox,
-  Saly
+  Saly,
+  WelcomeMessage
 } from '../styles';
 
 interface onSubmitValues {
